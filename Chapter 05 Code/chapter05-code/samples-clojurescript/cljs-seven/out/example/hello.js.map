@@ -1,0 +1,1 @@
+{"version":3,"file":"\/Users\/niko\/Dropbox\/clojure-on-the-go\/CLJ-BOOK\/chapter05-niko\/samples-clojurescript\/cljs-seven\/out\/example\/hello.js","sources":["hello.cljs"],"lineCount":7,"mappings":";AAAA;;;AAIA,AAACA,MAAS,yBAAA,zBAACC,6BAAOC","names":["js\/alert","cljs.core\/take","example.crossover.shared\/fib-seq"]}

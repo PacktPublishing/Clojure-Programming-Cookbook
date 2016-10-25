@@ -1,0 +1,1 @@
+{"version":3,"file":"\/Users\/niko\/Dropbox\/clojure-on-the-go\/CLJ-BOOK\/chapter05-niko\/samples-clojurescript\/cljs-seven\/out\/example\/repl.js","sources":["repl.cljs"],"lineCount":10,"mappings":";AAAA;;;AAIA,uBAAA,vBAAeA;AAAf,AACE,8CAAA,vCAACC","names":["example.repl\/connect","clojure.browser.repl\/connect"]}

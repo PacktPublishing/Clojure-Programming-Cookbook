@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{6C4B5AC3-2D67-4A12-8918-6B05E49CE56F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>firstclojure</RootNamespace>
+    <AssemblyName>firstclojure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\packages\Clojure.1.7.0\lib\net40\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\packages\Clojure.1.7.0\lib\net40\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.clr.io.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.clr.io.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.clr.shell.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.clr.shell.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core_clr.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core_clr.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core_deftype.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core_deftype.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core_print.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core_print.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core_proxy.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core_proxy.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core.protocols.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core.protocols.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.core.reducers.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.core.reducers.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.data.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.data.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.data.generators">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.data.generators.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.edn.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.edn.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.genclass.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.genclass.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.gvec.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.gvec.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.instant.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.instant.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.main.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.main.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.cl_format.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.cl_format.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.column_writer.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.column_writer.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.dispatch.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.dispatch.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.pprint_base.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.pprint_base.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.pretty_writer.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.pretty_writer.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.print_table.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.print_table.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.pprint.utilities.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.pprint.utilities.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.reflect.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.reflect.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.reflect.clr.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.reflect.clr.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.repl.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.repl.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.set.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.set.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.stacktrace.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.stacktrace.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.string.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.string.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.template.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.template.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.attributes.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.attributes.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.compilation.examples.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.compilation.examples.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.compilation.line_number_examples.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.compilation.line_number_examples.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.genclass.examples.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.genclass.examples.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.genclass.examples.ExampleClass">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.genclass.examples.ExampleClass.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test_clojure.protocols.examples.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test_clojure.protocols.examples.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test.check">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test.check.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test.generative">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test.generative.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test.junit.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test.junit.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.test.tap.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.test.tap.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.tools.namespace">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.tools.namespace.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.uuid.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.uuid.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.walk.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.walk.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="clojure.zip.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\clojure.zip.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\Microsoft.Scripting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="myui.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\myui.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="simpleform.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\simpleform.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="ui.clj">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\ui.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="Clojure">
+      <HintPath>..\..\..\Dropbox\clojure-on-the-go\CLJ-BOOK\chapter05-niko\clojureclr\Clojure.dll</HintPath>
+    </Reference>
+    <Reference Include="hello.net.clj">
+      <HintPath>..\..\hello-clr\target\clr\bin\hello.net.clj.dll</HintPath>
+    </Reference>
+    <Reference Include="hello.net">
+      <HintPath>..\..\hello-clr\target\clr\bin\hello.net.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

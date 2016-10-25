@@ -1,0 +1,7 @@
+2016-09-14 10:54 INFO  - Running reports  
+2016-09-14 10:54 INFO  - Will run the following report generators: [cashflowNpv]  
+2016-09-14 10:54 DEBUG - Running report generator: cashflowNpv  
+2016-09-14 10:54 INFO  - Success: Cashflow NPV Report Created  
+2016-09-14 10:54 DEBUG - Report saved. path = /home/cocasys/og-web-portal/2016-09-14-92/example-data-niko/opengamma/cashflowNpv.csv  
+2016-09-14 10:54 INFO  - Successfully saved to disk 1 out of 1 reports.  
+ 

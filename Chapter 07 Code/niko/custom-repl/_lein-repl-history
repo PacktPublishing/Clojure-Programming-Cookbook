@@ -1,0 +1,70 @@
+(ns user
+  (:require [async-sockets.core :refer :all]
+            [clojure.core.async :as async]))
+[com.hellonico.gearswithingears/async-sockets "0.1.0"]
+(ns user
+  (:require [async-sockets.core :refer :all]
+            [clojure.core.async :as async]))
+(ns asyncing.withsockets
+  (:require [com.gearswithingears.async-sockets :refer :all]
+            [clojure.core.async :as async]))
+(defn eval-everything [socket]
+  (async/go-loop []
+    (when-let [line (async/<! (:in socket))]
+      (async/>! (:out socket) (eval line))
+      (recur))))
+(let [server (socket-server 12345)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (echo-everything connection)
+      (recur)))))
+(let [server (socket-server 12345)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (echo-everything connection)
+      (recur))))
+(let [server (socket-server 12345)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (eval-everything connection)
+      (recur))))
+(defn eval-everything [socket]
+  (async/go-loop []
+    (when-let [line (async/<! (:in socket))]
+      (async/>! (:out socket) (eval line))
+      (recur))))
+(let [server (socket-server 12346)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (eval-everything connection)
+      (recur))))
+(defn eval-everything [socket]
+  (async/go-loop []
+    (when-let [line (async/<! (:in socket))]
+      (async/>! (:out socket) (eval (read line)))
+      (recur))))
+(let [server (socket-server 12347)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (eval-everything connection)
+      (recur))))
+(defn eval-everything [socket]
+  (async/go-loop []
+    (when-let [line (async/<! (:in socket))]
+      (async/>! (:out socket) (eval (read (str line))))
+      (recur))))
+(let [server (socket-server 12348)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (eval-everything connection)
+      (recur))))
+(defn eval-everything [socket]
+  (async/go-loop []
+    (when-let [line (async/<! (:in socket))]
+      (async/>! (:out socket) (eval (read-string line)))
+      (recur))))
+(let [server (socket-server 12349)]
+  (async/go-loop []
+    (when-let [connection (async/<! (:connections server))] 
+      (eval-everything connection)
+      (recur))))

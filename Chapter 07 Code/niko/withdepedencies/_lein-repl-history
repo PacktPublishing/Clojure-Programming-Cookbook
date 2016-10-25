@@ -1,0 +1,14 @@
+(use '[clojure.tools.nrepl.server :only (start-server stop-server default-handler)]
+(use '[inspector.middleware :only (wrap-inspect)])
+(defonce server 
+  (start-server
+    :port 4006
+    :handler (default-handler #'wrap-inspect)))
+9
+)
+(use '[clojure.tools.nrepl.server :only (start-server stop-server default-handler)])
+(use '[inspector.middleware :only (wrap-inspect)])
+(use '[clojure.tools.nrepl.server :only (start-server stop-server)])
+(defonce server (start-server :port 7888))
+(use '[clojure.tools.nrepl.server :only (start-server stop-server)])
+(defonce server (start-server :port 7888))

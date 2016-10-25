@@ -1,0 +1,2 @@
+;; Analyzed by ClojureScript 1.7.228
+{:name core2, :doc nil, :excludes #{}, :use-macros nil, :require-macros nil, :uses nil, :requires {core core}, :imports nil}

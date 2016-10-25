@@ -1,0 +1,13 @@
+(compile gen1)
+(compile 'gen1)
+(gen1)
+(ns gen1)
+(find-doc ns)
+(find-doc 'ns)
+(find-doc "ns"s)
+(find-doc "ns")
+ns
+(ns)
+)
+(compile 'gen3)
+(compile 'gen2)

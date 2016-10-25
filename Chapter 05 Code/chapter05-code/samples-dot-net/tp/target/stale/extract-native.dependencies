@@ -1,0 +1,1 @@
+([:dependencies ([org.clojure/clojure "1.8.0"] [com.climate/claypoole "1.1.2"] [tesser.core/tesser.core "1.0.1"])])

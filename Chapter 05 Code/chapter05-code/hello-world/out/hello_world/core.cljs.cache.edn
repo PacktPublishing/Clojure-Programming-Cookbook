@@ -1,0 +1,2 @@
+;; Analyzed by ClojureScript 1.7.228
+{:name hello-world.core, :doc nil, :excludes #{}, :use-macros nil, :require-macros nil, :uses nil, :requires {repl clojure.browser.repl, clojure.browser.repl clojure.browser.repl}, :imports nil}

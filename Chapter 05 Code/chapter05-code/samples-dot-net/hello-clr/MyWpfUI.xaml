@@ -1,0 +1,14 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="My WPF UI" Height="300" Width="300">
+    <StackPanel Margin="5">
+        <StackPanel>
+            <Label Content="Prename:" />
+            <TextBox x:Name="preName" MinWidth="50"/>
+        </StackPanel>
+        <StackPanel>            
+            <Label Content="Surename:" />
+            <TextBox x:Name="sureName" MinWidth="50"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,0 +1,426 @@
+(ns schema-example.clj-example
+  (:require [schema.core :as s]
+            [schema.coerce :as coerce]
+            [schema-generators.complete :as c]
+            [schema-generators.generators :as g]
+            [schema-generators.complete :as gc]
+            [clojure.test.check :as tc]            
+            ))
+
+
+(def clojure-programming-cookbook
+ {:name "Clojure Programming CookBook"
+  :author ["Makoto Hashimoto" "Nicolas Modrzyk"]
+  :category #{:programming :lisp :functional}
+  :publisher "Packt Publishing"
+  }
+  )
+
+(def Book
+  {
+   :name s/Str
+   :author [s/Str]
+   :category #{s/Keyword}
+   :publisher s/Str 
+   })
+
+(s/validate
+Book
+  {:name "Clojure Programming CookBook"
+  :author ["Makoto Hashimoto" "Nicolas Modrzyk"]
+  :category #{:programming :lisp :functional}
+   :publisher "Packt Publishing"   
+  }
+  )
+{:name "Clojure Programming CookBook", :author ["Makoto Hashimoto" "Nicolas Modrzyk"], :category #{:programming :lisp :functional}, :publisher "Packt Publishing"}
+
+(s/validate
+ Book
+ {:name "Clojure Programming CookBook"
+  :author ["Makoto Hashimoto" "Nicolas Modrzyk"]
+  :category [:programming :lisp :functional]
+  :publisher "Packt Publishing"
+  })
+;;=> ExceptionInfo Value does not match schema: {:category (not (set? a-clojure.lang.PersistentVector))}  schema.core/validator/fn--38164 (core.clj:155)
+
+(s/validate s/Str "Makoto")
+;;=> Makoto
+(s/validate s/Str ["Makoto"])
+;;=> ExceptionInfo Value does not match schema: (not (instance? java.lang.String ["Makoto"]))  schema.core/validator/fn--38164 (core.clj:155)
+(s/validate s/Int 100)
+;;=> 100
+(s/validate s/Num 100.0)
+;;=> 100.0
+(s/validate s/Bool true)
+;;=> true
+(s/validate s/Bool nil)
+;;=> ExceptionInfo Value does not match schema: (not (instance? java.lang.Boolean nil))  schema.core/validator/fn--38164 (core.clj:155)
+
+;; array
+(s/validate [s/Str] ["Makoto Hashimoto" "Nicolas Modrzyk"])
+;; => ["Makoto Hashimoto" "Nicolas Modrzyk"]
+
+(s/validate {s/Keyword s/Int} {:year 2016})
+;; => {:year 2016}
+
+;; set
+(s/validate #{s/Keyword} #{:lisp :functional})
+;; => #{:lisp :functional}
+
+(s/validate s/Any "Makoto")
+;;=> "Makoto"
+(s/validate s/Any 1.0)
+;;=> 1.0
+
+(s/validate s/Regex  #".*")
+;;=> #".*"
+
+(s/explain Book)
+;;=> {:name Str, :author [Str], :category #{Keyword}, :publisher Str}
+
+(s/explain s/Str)
+;;=> Str
+
+
+
+
+(s/validate (s/enum "01" "02" "03") "01")
+;;=> "01" 
+(s/validate (s/enum "01" "02" "03") "05")
+;;=> ExceptionInfo Value does not match schema: (not (#{"03" "02" "01"} "05"))  schema.core/validator/fn--38164 (core.clj:155)
+
+(s/defn my-multi :- s/Num
+  [x :- s/Int
+   y :- s/Num]
+  (* x y))
+
+(s/defrecord Order
+    [name :- s/Str
+     price :- s/Num
+     qty :- s/Int])
+ll=> #'schema-example.clj-example/strict-map->Order
+
+(s/explain Order)
+;;=> (record schema_example.clj_example.Order {:name Str, :price Num, :qty Int})
+
+(s/validate Order (map->Order {:name "Clojure Programming Cookbook" :price 32.00 :qty 10}))
+;;=> #schema_example.clj_example.Order{:name "Clojure Programming Cookbook", :price 32.0, :qty 10}
+
+(s/validate (s/pred pos?) 123)
+
+(s/validate (s/pred #(and (< 0 %) (> 10 %))) 5)
+;;=> 5
+(s/validate (s/maybe s/Keyword) :price)
+(s/validate (s/maybe s/Keyword) nil)
+(s/validate (s/maybe s/Keyword) 1)
+;;=> ExceptionInfo Value does not match schema: (not (keyword? 1))  schema.core/validator/fn--38164 (core.clj:155)
+(def NumMapOrSetOrList (s/conditional map? {s/Keyword s/Num} set? #{s/Num} :else [s/Num]))
+;;=> #'schema-example.clj-example/NumMapOrSetOrList
+
+(s/validate NumMapOrSetOrList {:qty 1.0})
+;;=> {:qty 1.0}
+(s/validate NumMapOrSetOrList #{1 2 3})
+;;=> #{1 3 2}
+(s/validate NumMapOrSetOrList [1 2 3])
+;;=> [1 2 3]
+-32768 ～ 32767
+(def SmallInt (s/constrained long #(and (<= -32768 %) (>= 32767 %))))
+
+(s/validate SmallInt 10)
+;;=> 10
+(s/validate SmallInt 500000)
+;;=> ExceptionInfo Value does not match schema: (not (schema-example.clj-example/fn--39713 500000))  schema.core/validator/fn--38164 (core.clj:155)
+
+
+(s/defrecord StampedNames
+  [date :- Long
+   names :- [s/Str]])
+
+(defrecord Order
+  [^Long date
+   names ;; a list of Strings
+   ])
+
+(s/defn stamped-names :- StampedNames
+  [names :- [s/Str]]
+  (StampedNames. (str (System/currentTimeMillis)) names))
+
+(my-multi 2.2 3.3)
+
+(s/with-fn-validation (my-multi 2.2 3.3))
+
+
+;;   The overhead for checking if run-time validation should be used is very
+;;   small -- about 5% of a very small fn call.  On top of that, actual
+
+(def FancySeq
+  [(s/one s/Str "s")
+   (s/optional s/Keyword "k")
+   s/Num])
+
+(s/validate FancySeq ["test"])
+(s/validate FancySeq ["test" :k])
+(s/validate FancySeq ["test" :k 1 2 3])
+;; all ok
+
+(s/validate FancySeq [1 :k 2 3 "4"])
+
+
+(def RequestCommentId s/Str)
+
+(s/defschema RequestParams
+  {
+   :comment-id s/Str   
+   :comment-body s/Str
+  })
+
+(s/defschema DatabaseParams
+  {:id s/Int
+   :body s/Str})
+
+(defn RequestParams->DatabaseParams
+  [{:keys [comment-id comment-body] :as request-params}]
+  {:id comment-id
+   :body comment-body})
+
+(def RequestParams->DatabaseParams-coercer
+  (coerce/coercer DatabaseParams {DatabaseParams RequestParams->DatabaseParams
+                                  s/Int #(Integer/parseInt %)}))
+
+(RequestParams->DatabaseParams-coercer
+ {:comment-id "123" :comment-body "Hello World!"})
+
+(def PositiveDouble (s/constrained double pos?))  ;; positive number
+(s/defn sqrt :- PositiveDouble
+  [v :- PositiveDouble]
+  (Math/sqrt v))
+;; s/fn-schema で定義を確認してみる
+(s/explain (s/fn-schema sqrt))
+;; => (=> (constrained double pos?) (constrained double pos?))
+;; validation なしで実行
+(sqrt -4.0)
+;; => NaN
+;; validation ありで実行
+(s/with-fn-validation (sqrt -4.0))
+;; => ExceptionInfo Input to sqrt does not match schema: [(named (not (pos? -4.0)) v)]  schema-study.core/eval14321/sqrt--14326 (form-init3371089079384472141.clj:233)
+(s/with-fn-validation (sqrt 4.0))
+;; => 2.0
+
+(def Book
+  {
+   :name s/Str
+   :author [s/Str]
+   :keyword #{s/Keyword}
+   :publisher s/Str
+   :category (s/enum :it :romance :business-money)
+   })
+
+;;=> #'schema-example.clj-example/Book
+
+(g/generate Book)
+;;=> {:name "BXfW]", :author [">6" "lf7:5Gi!_" "$"], :keyword #{}, :publisher "J`QN!L*j", :category :it}
+
+(g Book)
+(g/sample 100 Book)
+;;=> ({:name "", :author [], :keyword #{}, :publisher "", :category :business-money}
+;;=>  {:name "", :author [""], :keyword #{:Wt}, :publisher ">", :category :it}
+;;=>  {:name "z", :author [], :keyword #{:j}, :publisher "jK", :category :business-money}
+
+(gc/complete {:name "foo" :keyword #{:bar}} Book)
+
+(g/sample 10 NumMapOrSetOrList)
+
+(g/generate Tree)
+;; => {:value -8N, :children [{:value 5, :children [{:value -2N, :children []}]}
+;;                            {:value -2, :children []}]}
+
+(c/complete {:type :dog} Animal)
+;; => {:name "nL@", :barks? false, :type :dog}
+            ))
+
+(def Tree {:value s/Int :children [(s/recursive #'Tree)]})
+
+(g/generate Tree)
+
+(g/sample 10 Float)
+;;=> (-1.0 -1.5 -2.0 2.5 1.5 -0.75 3.03125 2.25 -4.0 -0.0)
+
+(g/sample 10 s/Str)
+;;=> ("" "'" "##" "r8" "" "'Uqn3" "" "F86O2Bl" "AR~2," "")
+;; recursive
+(def Recursive {:key s/Int :value s/Str :children [(s/recursive #'RecursiveData)]})
+;;=> #'schema-example.clj-example/Recursive
+(s/validate Recursive
+            {:key 100 :value "test", :children
+             [{:key 2 :value "test2", :children [] }
+              {:key 3 :value "test3", :children [{:key 4 :value "test4" :children []}]}]})
+
+;;=> {:key 100, :value "test", :children [{:key 2, :value "test2", :children []} {:key 3, :value "test3", :children [{:key 4, :value "test4", :children []}]}]}
+(g/generate Recursive)
+
+
+(s/defn int-add :- s/Int
+  [& x :- [s/Int]]
+  (reduce + x))
+;;=> #'schema-example.clj-example/int-add
+
+(int-add 1 1 2 3)
+;;=> 7
+(int-add 1 1.0 4)
+;;=> 6.0
+
+(s/set-fn-validation! true)
+;;=> nil
+
+(int-add 1 1.0 4)
+;;=> ExceptionInfo Input to int-add does not match schema: [nil (not (integer? 1.0))]  schema-example.clj-example/eval49222/int-add--49227 (form-init3277965317664434982.clj:262)
+
+(s/set-fn-validation! false)
+;;=> nil
+
+(int-add 1 1.0 4)
+;;=> 6.0
+
+
+(s/defn ^:always-validate wrong-int-add :- s/Int
+    [& x :- [s/Int]]
+  (bigdec (reduce + x)))
+;;=> #'schema-example.clj-example/wrong-int-add
+
+
+(wrong-int-add 1 1)
+;;=> ExceptionInfo Output of wrong-int-add does not match schema: (not (integer? 2M))  schema-example.clj-example/eval49476/wrong-int-add--49481 (form-init3277965317664434982.clj:284)
+
+
+(time
+ (dotimes [n 100000]
+   (s/with-fn-validation
+     (int-add 1 2))))
+;;"Elapsed time: 587.858912 msecs"
+;;=> nil
+
+(time
+ (dotimes [n 100000]
+   (s/without-fn-validation
+    (int-add 1 2))))
+;;=> "Elapsed time: 150.847882 msecs"
+;;=> nil
+
+(s/set-fn-validation! true)
+;;=> true
+
+(time
+ (dotimes [n 100000]
+   (int-add 1 2)))
+;;=> "Elapsed time: 140.624018 msecs"
+;;=> nil
+
+(s/set-fn-validation! false)
+;;=> nil
+
+(time
+ (dotimes [n 100000]
+   (int-add 1 2)))
+;;=> "Elapsed time: 28.948555 msecs"
+;;=> nil
+
+
+
+(time
+ (dotimes [n 100000]
+   (+ 1 2)))
+;;=> "Elapsed time: 7.058001 msecs"
+;;=> nil
+
+(time
+ (dotimes [n 1000000]
+   (apply int-add (range 100))))
+;;=> "Elapsed time: 3387.52923 msecs"
+;;=> nil
+
+
+(time
+ (dotimes [n 1000000]
+   (apply + (range 100))))
+;;=> "Elapsed time: 3681.930561 msecs"
+;;=> nil
+
+;;http://ericgebhart.com/fresh-data-with-prismatic-schema-fressian-pail-cascalog/
+
+
+(def jcoerce-dataunit
+  (coerce/coercer (p/master-schema) coerce/json-coercion-matcher))
+
+
+ 
+(def coerce-dataunit
+  (coerce/coercer (p/master-schema) coerce/string-coercion-matcher))
+
+(def jcoerce-dataunit
+  (coerce/coercer s/Str coerce/json-coercion-matcher))
+
+(def parse-comment-request
+  (coerce/coercer request-order coerce/json-coercion-matcher))
+
+
+
+(s/defschema RequestOrder
+  { :id s/Str
+   :product s/Str
+   :qty s/Int
+   :unit-price s/Num
+   :product2 s/Str
+   :qty2 s/Int
+   :unit-price2 s/Num})
+
+(s/defschema ReplyOrder
+  { :order-id s/Str
+   :ordered-product [[(s/one s/Str "s")  (s/one s/Int "s")(s/one s/Num "s")]]   
+   })
+
+(s/validate {:order-id "10", :ordered-product [["pencil" 5 1.0] ["note" 5 3.0]]})
+(s/validate )
+(s/defschema ReplyOrder
+  { :order-id s/Str
+   :ordered-product [[(s/one s/Str "s")  (s/one s/Int "s")(s/one s/Num "s")]]   
+   })
+
+(s/defschema ReplyOrder2
+  { :order-id s/Str
+   :ordered-product
+   [{(s/required-key :product-name) s/Str
+     (s/required-key :qty) s/Int
+     (s/required-key :unit-price) s/Num}]})
+
+(defn RequestOrder->ReplyOrder
+  [{:keys [id product qty unit-price product2 qty2 unit-price2]  :as request-params}]
+  {:order-id id :ordered-product [[product qty unit-price][product2 qty2 unit-price2]]})
+
+(defn RequestOrder->ReplyOrder2
+  [{:keys [id product qty unit-price product2 qty2 unit-price2]  :as request-params}]
+  {:order-id id
+   :ordered-product [
+                     {:product-name product :qty qty :unit-price unit-price}
+                     {:product-name product2 :qty qty2 :unit-price unit-price2}]})
+
+
+
+(def order-coercer
+  (coerce/coercer ReplyOrder
+                  {ReplyOrder RequestOrder->ReplyOrder}))
+
+(def order-coercer2
+  (coerce/coercer ReplyOrder2
+                  {ReplyOrder2 RequestOrder->ReplyOrder2}))
+
+(order-coercer
+ {:id "10" :product "pencil" :qty 5 :unit-price 1.0 :product2 "note" :qty2 5 :unit-price2 3.0})
+
+
+
+(order-coercer2
+ {:id "10" :product "pencil" :qty 5 :unit-price 1.0 :product2 "note" :qty2 5 :unit-price2 3.0})
+
+
+
+

@@ -1,0 +1,2 @@
+;; Analyzed by ClojureScript 1.7.228
+{:name example.hello, :doc nil, :excludes #{}, :use-macros nil, :require-macros nil, :uses nil, :requires {shared example.crossover.shared, example.crossover.shared example.crossover.shared}, :imports nil}

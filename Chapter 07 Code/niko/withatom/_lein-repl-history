@@ -1,0 +1,5 @@
+(gen-class 'generate)
+(gen-class generate)
+(find-doc gen-class)
+(gen-class "generate")
+(compile 'generate)

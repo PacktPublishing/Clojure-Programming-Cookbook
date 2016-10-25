@@ -1,0 +1,1 @@
+{"version":3,"file":"\/Users\/niko\/Dropbox\/clojure-on-the-go\/CLJ-BOOK\/chapter05-2-niko\/hello-world\/out\/hello_world\/core.js","sources":["core.cljs"],"lineCount":9,"mappings":";AAAA;;;AAMA,AAACA;AAED,4BAAA,5BAACC;AAED,4BAAA,5BAACA","names":["cljs.core\/enable-console-print!","cljs.core\/println"]}
