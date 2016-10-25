@@ -1,0 +1,344 @@
+(require '[clojure.test.check :as tc])
+(require '[clojure.test.check.generators :as gen])
+(require '[clojure.test.check.properties :as prop])
+(def sort-idempotent-prop
+  (prop/for-all [v (gen/vector gen/int)]
+    (= (sort v) (sort (sort v)))))
+(tc/quick-check 100 sort-idempotent-prop)
+(autotest)
+(require '[com.siili.memocks :as memocks])
+(def m (memocks/mock))
+(m "hello" "sure")
+(m "hello")
+(m :hello "sure")
+(m "hello")
+(memocks/all-args m)
+(def stub (memocks/mock (fn [x] (last x))))
+(stub 2)
+(stub [2 3])
+(stub [2 3 4])
+(stub 2 3 4)
+(require '[miner.herbert :as h])
+(h/conforms? '{:a int :b [sym+] :c str} '{:a 42 :b [foo bar baz] :c "foo"})
+(def my-test (h/conform '{:a (:= A int) :b [sym+] :c str}))
+(my-test '{:a 42 :b [foo bar baz] :c "foo"})
+(require '[miner.herbert.generators :as hg])
+(require '[clojure.test.check :as tc])
+;; trivial example
+(tc/quick-check 100 (hg/property integer? 'int))
+(hg/property (fn [m] (== (get-in m [:v 2 :int]) 42))
+                                '{:v (vec kw kw {:int 42} kw) :str str})
+(take 10 (hg/property (fn [m] (== (get-in m [:v 2 :int]) 42))
+                                '{:v (vec kw kw {:int 42} kw) :str str}))
+(hg/sample '[int*])
+(binding [h/*string-from-regex-generator* chuck/string-from-regex]
+    (hg/sample '(str #"\x66oo\dbar{1,3}") 5))
+(require '[com.gfredericks.test.chuck.generators :as chuck])
+(require '[miner.herbert :as h])
+(require '[miner.herbert.generators :as hg])
+(binding [h/*string-from-regex-generator* chuck/string-from-regex]
+    (hg/sample '(str #"\x66oo\dbar{1,3}") 5))
+(hg/sample '(str #"\x66oo\dbar{1,3}") 5)
+(hg/sample '(str #"foo\dbar{1,3}") 5)
+(hg/sample '(str #"foo\dbar\c") 5)
+(hg/sample '(str #"foo\dbar\c" 5)
+)
+(hg/sample '(str #"foo\dbar\c" 5))
+(hg/sample '(str #"foo\dbar\c") 5)
+(hg/sample '(str #"foo\dbar") 5)
+(hg/sample '(str #"foo\dbar.") 5)
+(hg/sample '(str #"foo\d.ar.") 5)
+(hg/sample '(str #"foo\d.a r.") 5)
+((h/conform '[(:= A int) (:= B int) (:= C int+ A B)]) [3 7 4 5 6])
+(h/conforms? '(& {:a (:= A int) :b (:= B sym) :c (:= C [B+])} (when (= (count C) A))) 
+           '{:a 2 :b foo :c [foo foo]})
+(tc/quick-check 100 (hg/property integer? 'int))(tc/quick-check 100 (hg/property integer? 'int))
+(def my-checker (h/conform '[(:= MAX int) (:= XS int+ MAX)]))
+(my-checker [7 3 5 6 4])
+(defn palindrome? [s]
+    (and (string? s)
+        (= s (clojure.string/reverse s))))
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc])
+(:require [clojure.test.check.generators :as gen])
+(:require [clojure.test.check.properties :as prop])
+(:require [clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(defn palindrome? [s]
+    (and (string? s)
+        (= s (clojure.string/reverse s))))
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(require '[miner.herbert :as h])
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(defn palindrome? [s]
+    (and (string? s)
+        (= s (clojure.string/reverse s))))
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc])
+(:require [clojure.test.check.generators :as gen])
+(:require [clojure.test.check.properties :as prop])
+  (:require [miner.herbert :as h])
+(:require [clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(defn palindrome? [s]
+    (and (string? s)
+        (= s (clojure.string/reverse s))))
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc])
+(:require [clojure.test.check.generators :as gen])
+(:require [clojure.test.check.properties :as prop])
+  (:require [miner.herbert :as h])
+(:require [clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(defn palindrome? [s]
+    (and (string? s)
+        (= s (clojure.string/reverse s))))
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}
+              {:palindrome "kayak" :len 5} 
+              {:palindrome "level" :len 5}
+              {:palindrome "ere" :len 3}
+              {:palindrome "racecar" :len 7}])
+(h/conforms? '(grammar [pal+]
+                  palindrome user/palindrome?
+                  pal {:len (:= LEN int) :palindrome (and palindrome (cnt LEN))})
+             [{:palindrome "civic" :len 5}])
+(hg/sample '(str #"foo\d.a r.") 5)
+(ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc])
+(:require [clojure.test.check.generators :as gen])
+(:require [clojure.test.check.properties :as prop])
+  (:require [miner.herbert :as h])
+(:require [clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(def tested sort)
+(def sort-idempotent-prop
+  (prop/for-all [v (gen/vector gen/int)]
+    (= (tested v) (tested (tested v)))))
+(ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc])
+(:require [clojure.test.check.generators :as gen])
+(:require [clojure.test.check.properties :as prop])
+    (:require [miner.herbert :as h])
+(:require [clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(hg/sample '(str #"foo\d.a r.") 5)
+(gen'/for [len gen/nat
+           bools (gen/vector gen/boolean len)]
+  [len bools])
+(gen/sample *1)
+(require '[com.gfredericks.test.chuck.generators :as gen'])
+(gen'/for [len gen/nat
+           bools (gen/vector gen/boolean len)]
+  [len bools])
+(gen/sample *1)
+(take 2 (gen/sample *1))
+(def mine 
+(gen'/for [len gen/nat
+           bools (gen/vector gen/boolean len)]
+  [len bools]))
+(gen/sample mine)
+(take 2 (gen/sample mine))
+(take 200 (gen/sample mine))
+(def mine 
+(gen'/for [
+   size 100
+   len gen/nat
+           bools (gen/vector gen/boolean len)]
+  [len bools]))
+(def mine 
+(gen'/for [
+   size gen/nat
+   len gen/nat
+           bools (gen/vector gen/boolean len)]
+  [len bools]))
+(gen/sample mine)
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*"))
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*[あ|"))
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*[あ|"い]))
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*[あ|"  (gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*[あ|い]"))]))
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*[あ|い]"))
+(gen/sample (gen'string-from-regex #"(boom|baam)"))
+(gen/sample (gen'string-from-regex #"('boom'|'baam')"))
+(require '[com.gfredericks.test.chuck.generators :as gen'])
+(gen/sample (gen'string-from-regex #"('boom'|'baam')"))
+(gen/sample (gen'/string-from-regex #"('boom'|'baam')"))
+(gen/sample (gen'/string-from-regex #"(boom|baam)"))
+(gen/sample (gen'/string-from-regex #"(b(o)*om|baam)"))
+(gen/sample (gen'/string-from-regex #"(b(o)*om|b(a)*am)"))
+(gen'string-from-regex #"[moon|shadow|sun|field]-[rise|red|orange|blue]^")
+(gen/sample 
+(gen'/string-from-regex #"[moon|shadow|sun|field]-[rise|red|orange|blue]^"))
+(gen'/string-from-regex #"(moon|shadow|sun|field)-(rise|red|orange|blue)^"))
+(gen/sample 
+(gen'/string-from-regex #"(moon|shadow|sun|field)-(rise|red|orange|blue)^"))
+*1
+*e
+(ns quickchecks.core5
+  (:require    [clojure.test.check.properties :as prop])
+  (:require    [clojure.test.check.generators :as gen])
+  (:require    [clojure.test.check.clojure-test :refer [defspec]])
+  (:require    [com.gfredericks.test.chuck.properties :as prop'])
+  (:require    [com.gfredericks.test.chuck.generators :as gen'])
+  (:use clojure.test)
+   (:use [compojure.core]
+        [compojure.route   :as route]))
+(gen/sample 
+(gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*") 10)
+(gen/elements [1 2 3 4 5])
+(take 10 (gen/elements [1 2 3 4 5]))
+(gen/sample (gen/elements [1 2 3 4 5])))
+(gen/sample (gen/elements [1 2 3 4 5]))
+(gen/sample (gen/elements [1 2 3 4 5]) 20)
+(gen/list (gen/elements [1 2 3 4 5]))
+(gen/sample (gen/list (gen/elements [1 2 3 4 5])))
+(gen/sample (gen/return 1))
+(gen/sample (gen/return 1) 20)
+(gen/sample (gen/coll [1 2 3]))
+(gen/sample (gen/elements (range 10)))
+(gen/sample (gen/not-empty (gen/vector gen/int)))
+(gen/sample (gen/not-empty (gen/vector gen/int)) 5)
+(ns quickchecks.repl0
+  (:require    [clojure.test.check.properties :as prop])
+  (:require    [clojure.test.check.generators :as gen])
+  (:require    [com.gfredericks.test.chuck.generators :as gen']))
+(gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*")
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*") 1)
+(gen/sample (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*") 2)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*") 2))
+(gen/sample (gen/not-empty (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*")) 2)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"([☃-♥]{3}|B(A|OO)M)*")) 1)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"(B(A|O)*M)")) 1)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"(B(A|O)M)+")) 1)
+(gen/sample gen/keyword)
+gen/ratio
+(gen/sample gen/ratio)
+(require '[miner.herbert :as h])
+(def my-test (h/conform '{:a (:= A int) :b [sym+] :c str}))
+(my-test '{:a 42 :b [foo bar baz] :c "foo"})
+(require '[miner.herbert :as h])
+(h/conforms? '{:a int :b [sym+] :c str} '{:a 42 :b [foo bar baz] :c "foo"})
+(h/conforms? '{:a int :b [sym+] :c str} '{:a 30 :b [foo bar baz] :c "foo"})
+ (ns quickchecks.core-test
+(:use midje.sweet)
+(:use clojure.test.check.clojure-test)
+(:require [clojure.test.check :as tc]
+[clojure.test.check.generators :as gen]
+[clojure.test.check.properties :as prop]
+    [miner.herbert :as h]
+[clojure.test :refer :all]
+     [quickchecks.core :refer :all]))
+(hg/sample '[int*])
+(require '[miner.herbert.generators :as hg])
+(hg/sample '[int*])
+(hg/sample '[int*] 10)
+(hg/sample '[int*] 3)
+(hg/sample '[int*] 5)
+(hg/sample '{:a int :b [sym+] :c str} 3)
+(hg/sample '{:a (:= A int) :b [sym+] :c str}))
+(hg/sample '{:a (:= A int) :b [sym+] :c str}) 1)
+(hg/sample '{:a (:= A int) :b [sym+] :c str} 1)
+(hg/sample (fn [m] (== (get-in m [:v 2 :int]) 42)))
+(hg/sample (fn [m] (== (get-in m [:v 2 :int]) 42)) 1)
+(hg/sample (fn [m] (== (get-in m [:v 2 :int]) 42)) 2)
+(hg/sample '{:a num :b pos :c neg :d vec})
+(hg/sample '{:a num :b pos :c neg :d vec} 1)
+(hg/sample '{:a num :b pos :c neg :d (vec inc*)})
+(hg/sample '{:a num :b pos :c neg :d (vec inc)})
+(hg/sample '{:a num :b pos :c neg :d (vec int*)})
+(hg/sample '{:a num :b pos :c neg :d (vec int*)} 1)
+(hg/sample '{:a num :b pos :c neg :d (vec int+)} 1)
+(hg/sample '{:a num :b pos :c neg :d (vec int+ int+)} 1)
+(hg/sample '{:a num :b pos :c neg :d (vec int+ zeo+)} 1)
+(hg/sample '{:a num :b pos :c neg :d (vec int+ zero+)} 1)
+(gen/sample (gen/return 1) 5)
+(gen/sample (gen/elements (range 10)))
+(gen/sample (gen/not-empty (gen/vector gen/int)) 5) 
+(gen/sample (gen/not-empty (gen/vector gen/int 3)) 5) 
+(gen/sample (gen/not-empty (gen/vector gen/int 3)) 3) 
+(gen/sample (gen/tuple gen/int gen/int) 3)
+(gen/sample (gen/tuple gen/int gen/str) 3)
+(gen/sample (gen/tuple gen/int gen/string) 3)
+(gen/sample (gen/tuple gen/int (gen/not-empty (gen/string)) 3)
+)
+(gen/sample (gen/tuple gen/int (gen/not-empty (gen/string))) 3)
+(gen/sample (gen/tuple gen/int (gen/not-empty gen/string)) 3)
+(require    '[com.gfredericks.test.chuck.generators :as gen']
+)
+(gen/sample 
+(gen/not-empty (gen'/string-from-regex #"(B(A|O)M)+")) 1)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"(B(A|O)M)+")) 1)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"B(A|O)+M")) 1)
+(gen/sample (gen/not-empty (gen'/string-from-regex #"B(A|O){2}M")) 1)
+(require '[miner.herbert.generators :as hg])
+(hg/sample '[int*] 5)
+(gen/sample '[int*] 5)
+(hg/sample '[int*] 5)
+(require '[com.gfredericks.test.chuck.generators :as gen'])
+(require '[miner.herbert.generators :as hg])
+(gen/sample '[int*] 5)
+(require '[clojure.test.check.generators :as gen])
+(gen/sample '[int*] 5)
+(gen'/sample '[int*] 5)
+(gen/sample '[int*] 5)
+(gen/sample [int*] 5)
+(hg/sample [int*] 5)
+(hg/sample '[int*] 5)

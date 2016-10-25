@@ -1,0 +1,1 @@
+([:dependencies ([org.clojure/clojure "1.8.0"] [clojurewerkz/meltdown "2.0.0-SNAPSHOT"] [clojurewerkz/machine_head "1.0.0-beta8"] [org.clojure/tools.nrepl "0.2.6" :exclusions ([org.clojure/clojure]) :scope "test"] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure]) :scope "test"])])

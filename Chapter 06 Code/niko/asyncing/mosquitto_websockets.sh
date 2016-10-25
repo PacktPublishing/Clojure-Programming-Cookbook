@@ -1,0 +1,1 @@
+mosquitto -c resources/mosquitto.conf 

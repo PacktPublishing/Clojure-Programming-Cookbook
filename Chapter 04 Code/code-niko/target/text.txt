@@ -1,0 +1,1 @@
+[#person.Friend{:name "Nico"} #person.Friend{:name "Makoto"} #person.Friend{:name "Nick"}]

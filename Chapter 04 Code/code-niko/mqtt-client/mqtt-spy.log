@@ -1,0 +1,245 @@
+2016-01-05 18:02:17,122 INFO  [JavaFX Application Thread     ] [MainController                ]  - Default configuration file present (/Users/niko/mqtt-spy/mqtt-spy-configuration.xml) = false
+2016-01-06 09:54:39,083 INFO  [JavaFX Application Thread     ] [ConfigurationManager          ]  - Creating UI property file
+2016-01-06 09:54:40,938 ERROR [JavaFX Application Thread     ] [StatisticsManager             ]  - Cannot read the statistics file from /Users/niko/mqtt-spy/mqtt-spy-stats.xml
+java.io.FileNotFoundException: Cannot load the file from /Users/niko/mqtt-spy/mqtt-spy-stats.xml
+	at pl.baczkowicz.spy.xml.XMLParser.loadFromFile(XMLParser.java:308)
+	at pl.baczkowicz.mqttspy.stats.StatisticsManager.loadStats(StatisticsManager.java:89)
+	at pl.baczkowicz.mqttspy.ui.MainController.init(MainController.java:154)
+	at pl.baczkowicz.mqttspy.Main.start(Main.java:97)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$162(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$175(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$173(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$174(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+2016-01-06 09:54:42,188 INFO  [JavaFX Application Thread     ] [MainController                ]  - Default configuration file present (/Users/niko/mqtt-spy/mqtt-spy-configuration.xml) = false
+2016-01-06 09:54:53,475 ERROR [JavaFX Application Thread     ] [SpyUncaughtExceptionHandler   ]  - Thread Thread[JavaFX Application Thread,5,main] failed with java.lang.ClassCastException: javafx.scene.control.ButtonType cannot be cast to pl.baczkowicz.spy.ui.controls.DialogAction
+java.lang.ClassCastException: javafx.scene.control.ButtonType cannot be cast to pl.baczkowicz.spy.ui.controls.DialogAction
+	at pl.baczkowicz.mqttspy.ui.utils.DialogUtils.showDefaultConfigurationFileMissingChoice(DialogUtils.java:124)
+	at pl.baczkowicz.mqttspy.ui.ControlPanelController$2.handle(ControlPanelController.java:226)
+	at pl.baczkowicz.mqttspy.ui.ControlPanelController$2.handle(ControlPanelController.java:1)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8411)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:352)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:275)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:388)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+2016-01-06 09:54:56,647 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 09:54:56,647 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 09:54:56,661 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 09:55:11,045 INFO  [JavaFX Application Thread     ] [EditConnectionController      ]  - Opening connection niko_095456657@127.0.0.1
+2016-01-06 09:55:11,399 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (127.0.0.1 -> tcp://127.0.0.1)
+2016-01-06 09:55:11,418 ERROR [Thread-12                     ] [BaseConfigurationUtils        ]  - Invalid number format 
+2016-01-06 09:55:11,991 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=subscriptionsTitledPane, styleClass=titled-pane]'Subscriptions and received messages', AnchorPane@6ff3b82d, pl.baczkowicz.mqttspy.ui.ConnectionController@45fd38d0
+2016-01-06 09:55:11,995 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=publishMessageTitledPane, styleClass=titled-pane]'Publish message', AnchorPane@6f6f11ad, pl.baczkowicz.mqttspy.ui.ConnectionController@45fd38d0
+2016-01-06 09:55:12,000 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=newSubscriptionTitledPane, styleClass=titled-pane]'Define new subscription', AnchorPane@214d3aff, pl.baczkowicz.mqttspy.ui.ConnectionController@45fd38d0
+2016-01-06 09:55:12,040 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=scriptedPublicationsTitledPane, styleClass=titled-pane]'Scripted publications', AnchorPane@628ee65d, pl.baczkowicz.mqttspy.ui.ConnectionController@45fd38d0
+2016-01-06 09:55:12,651 INFO  [mqtt-spy [ConnectionRunnable for niko_095456657@127.0.0.1]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [niko_095456657] to server [[tcp://127.0.0.1]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  null
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2016-01-06 09:55:12,698 INFO  [MQTT Call: niko_095456657     ] [MqttConnectionResultHandler   ]  - niko_095456657@127.0.0.1 connected
+2016-01-06 09:55:12,699 INFO  [JavaFX Application Thread     ] [MqttEventHandler              ]  - About to resubscribe to all requested topics
+2016-01-06 09:55:25,413 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "mh.topic". Payload size = "5"
+2016-01-06 09:55:29,914 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "mh.topic". Payload size = "13"
+2016-01-06 09:55:57,600 INFO  [JavaFX Application Thread     ] [NewSubscriptionController     ]  - Subscribing to mh.topic
+2016-01-06 09:55:57,601 INFO  [JavaFX Application Thread     ] [SubscriptionManager           ]  - Creating subscription for mh.topic
+2016-01-06 09:55:57,762 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Subscribed to mh.topic
+2016-01-06 09:56:04,808 ERROR [JavaFX Application Thread     ] [BaseConfigurationUtils        ]  - Invalid number format 
+2016-01-06 10:14:43,060 ERROR [MQTT Ping: niko_095456657     ] [MqttCallbackHandler           ]  - Connection niko_095456657@127.0.0.1 lost
+Timed out while waiting to write messages to the server (32002)
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:31)
+	at org.eclipse.paho.client.mqttv3.internal.ClientState.checkForActivity(ClientState.java:589)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:701)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:687)
+	at org.eclipse.paho.client.mqttv3.TimerPingSender$PingTask.run(TimerPingSender.java:77)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+2016-01-06 10:14:43,082 WARN  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Client not connected
+2016-01-06 10:14:43,082 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Successfully unsubscribed from mh.topic
+2016-01-06 11:00:04,970 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting niko_095456657 from [tcp://127.0.0.1]
+2016-01-06 18:23:52,658 INFO  [JavaFX Application Thread     ] [MainController                ]  - Default configuration file present (/Users/niko/mqtt-spy/mqtt-spy-configuration.xml) = false
+2016-01-06 18:23:56,643 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_0_9.xml
+	at pl.baczkowicz.mqttspy.versions.VersionManager.loadVersions(VersionManager.java:89)
+	at pl.baczkowicz.mqttspy.ui.ControlPanelController$8.run(ControlPanelController.java:464)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:180)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:308)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:326)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1169)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1105)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:999)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:933)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1513)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+	at java.net.URL.openStream(URL.java:1038)
+	at pl.baczkowicz.mqttspy.versions.VersionManager.loadVersions(VersionManager.java:85)
+	... 2 more
+2016-01-06 18:24:00,419 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:24:00,419 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:24:00,439 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:24:08,413 INFO  [JavaFX Application Thread     ] [EditConnectionController      ]  - Opening connection niko_182400435@127.0.0.1
+2016-01-06 18:24:08,570 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (127.0.0.1 -> tcp://127.0.0.1)
+2016-01-06 18:24:09,387 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=subscriptionsTitledPane, styleClass=titled-pane]'Subscriptions and received messages', AnchorPane@7c82e086, pl.baczkowicz.mqttspy.ui.ConnectionController@58b9178e
+2016-01-06 18:24:09,393 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=publishMessageTitledPane, styleClass=titled-pane]'Publish message', AnchorPane@4750bbd5, pl.baczkowicz.mqttspy.ui.ConnectionController@58b9178e
+2016-01-06 18:24:09,398 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=newSubscriptionTitledPane, styleClass=titled-pane]'Define new subscription', AnchorPane@fedd5e8, pl.baczkowicz.mqttspy.ui.ConnectionController@58b9178e
+2016-01-06 18:24:09,409 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=scriptedPublicationsTitledPane, styleClass=titled-pane]'Scripted publications', AnchorPane@6fe6c7fa, pl.baczkowicz.mqttspy.ui.ConnectionController@58b9178e
+2016-01-06 18:24:10,009 INFO  [mqtt-spy [ConnectionRunnable for niko_182400435@127.0.0.1]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [niko_182400435] to server [[tcp://127.0.0.1]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  null
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2016-01-06 18:24:10,067 INFO  [MQTT Call: niko_182400435     ] [MqttConnectionResultHandler   ]  - niko_182400435@127.0.0.1 connected
+2016-01-06 18:24:10,449 INFO  [JavaFX Application Thread     ] [MqttEventHandler              ]  - About to resubscribe to all requested topics
+2016-01-06 18:25:55,259 INFO  [JavaFX Application Thread     ] [MainController                ]  - Default configuration file present (/Users/niko/mqtt-spy/mqtt-spy-configuration.xml) = false
+2016-01-06 18:25:57,811 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:25:57,811 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:25:57,829 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2016-01-06 18:25:59,378 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_0_9.xml
+	at pl.baczkowicz.mqttspy.versions.VersionManager.loadVersions(VersionManager.java:89)
+	at pl.baczkowicz.mqttspy.ui.ControlPanelController$8.run(ControlPanelController.java:464)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:180)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:308)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:326)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1169)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1105)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:999)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:933)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1513)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+	at java.net.URL.openStream(URL.java:1038)
+	at pl.baczkowicz.mqttspy.versions.VersionManager.loadVersions(VersionManager.java:85)
+	... 2 more
+2016-01-06 18:26:04,035 INFO  [JavaFX Application Thread     ] [EditConnectionController      ]  - Opening connection niko_182557826@127.0.0.1
+2016-01-06 18:26:04,145 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (127.0.0.1 -> tcp://127.0.0.1)
+2016-01-06 18:26:04,774 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=subscriptionsTitledPane, styleClass=titled-pane]'Subscriptions and received messages', AnchorPane@24e33d85, pl.baczkowicz.mqttspy.ui.ConnectionController@13686119
+2016-01-06 18:26:04,779 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=publishMessageTitledPane, styleClass=titled-pane]'Publish message', AnchorPane@456ba504, pl.baczkowicz.mqttspy.ui.ConnectionController@13686119
+2016-01-06 18:26:04,783 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=newSubscriptionTitledPane, styleClass=titled-pane]'Define new subscription', AnchorPane@586d42f4, pl.baczkowicz.mqttspy.ui.ConnectionController@13686119
+2016-01-06 18:26:04,793 INFO  [JavaFX Application Thread     ] [NewPublicationController      ]  - TitledPane[id=scriptedPublicationsTitledPane, styleClass=titled-pane]'Scripted publications', AnchorPane@6d243e52, pl.baczkowicz.mqttspy.ui.ConnectionController@13686119
+2016-01-06 18:26:05,389 INFO  [mqtt-spy [ConnectionRunnable for niko_182557826@127.0.0.1]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [niko_182557826] to server [[tcp://127.0.0.1]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  null
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2016-01-06 18:26:05,457 INFO  [MQTT Call: niko_182557826     ] [MqttConnectionResultHandler   ]  - niko_182557826@127.0.0.1 connected
+2016-01-06 18:26:05,458 INFO  [JavaFX Application Thread     ] [MqttEventHandler              ]  - About to resubscribe to all requested topics
+2016-01-06 18:26:18,112 INFO  [JavaFX Application Thread     ] [NewSubscriptionController     ]  - Subscribing to hello
+2016-01-06 18:26:18,113 INFO  [JavaFX Application Thread     ] [SubscriptionManager           ]  - Creating subscription for hello
+2016-01-06 18:26:18,291 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Subscribed to hello
+2016-01-06 18:26:27,749 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello". Payload size = "17"
+2016-01-06 18:26:39,729 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello". Payload size = "125"
+2016-01-06 18:27:34,689 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello". Payload size = "13"
+2016-01-06 18:28:05,559 INFO  [JavaFX Application Thread     ] [NewSubscriptionController     ]  - Subscribing to hello2
+2016-01-06 18:28:05,591 INFO  [JavaFX Application Thread     ] [SubscriptionManager           ]  - Creating subscription for hello2
+2016-01-06 18:28:05,669 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Subscribed to hello2
+2016-01-06 18:28:07,107 INFO  [JavaFX Application Thread     ] [NewSubscriptionController     ]  - Subscribing to hello2
+2016-01-06 18:28:15,454 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello2". Payload size = "23"
+2016-01-06 18:37:01,607 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello2". Payload size = "27"
+2016-01-06 18:37:11,577 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello2". Payload size = "6"
+2016-01-06 18:37:17,097 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello2". Payload size = "10"
+2016-01-06 18:37:21,715 INFO  [JavaFX Application Thread     ] [MqttAsyncConnection           ]  - Publishing message on topic "hello". Payload size = "10"
+2016-01-06 19:15:13,171 ERROR [MQTT Ping: niko_182400435     ] [MqttCallbackHandler           ]  - Connection niko_182400435@127.0.0.1 lost
+Timed out while waiting to write messages to the server (32002)
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:31)
+	at org.eclipse.paho.client.mqttv3.internal.ClientState.checkForActivity(ClientState.java:589)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:701)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:687)
+	at org.eclipse.paho.client.mqttv3.TimerPingSender$PingTask.run(TimerPingSender.java:77)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+2016-01-06 19:17:11,888 ERROR [MQTT Ping: niko_182557826     ] [MqttCallbackHandler           ]  - Connection niko_182557826@127.0.0.1 lost
+Timed out while waiting to write messages to the server (32002)
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:31)
+	at org.eclipse.paho.client.mqttv3.internal.ClientState.checkForActivity(ClientState.java:589)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:701)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.checkForActivity(ClientComms.java:687)
+	at org.eclipse.paho.client.mqttv3.TimerPingSender$PingTask.run(TimerPingSender.java:77)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+2016-01-06 19:17:11,893 WARN  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Client not connected
+2016-01-06 19:17:11,893 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Successfully unsubscribed from hello2
+2016-01-06 19:17:11,893 WARN  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Client not connected
+2016-01-06 19:17:11,893 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Successfully unsubscribed from hello

@@ -1,0 +1,500 @@
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic payload))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+(require '[clojurewerkz.meltdown.selectors :as sel])
+(def reactor (mr/create))
+(mr/on reactor (sel/match-all)
+(fn [event]
+(println "#")
+  (println event)))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+(require '[clojurewerkz.meltdown.selectors :as sel])
+(def conn (mh/connect "tcp://127.0.0.1:1883" (mh/generate-id)))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic payload))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(def reactor (mr/create))
+(mr/on reactor (sel/match-all)
+(fn [event]
+(println "#")
+  (println event)))
+(require '[clojurewerkz.machine-head.client :as mh])
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+(require '[clojurewerkz.meltdown.selectors :as sel])
+(def conn (mh/connect "tcp://127.0.0.1:1883" (mh/generate-id)))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic payload))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(def reactor (mr/create))
+(mr/on reactor (sel/match-all)
+(fn [event]
+(println "#")
+  (println event)))
+(def conn (mh/connect "tcp://127.0.0.1:1883" (mh/generate-id)))
+(def reactor (mr/create))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic payload))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor (sel/match-all)
+(fn [event]
+(println "#")
+  (println event)))
+@reactor
+reactor
+conn
+(def conn (mh/connect "tcp://127.0.0.1:1883" (mh/generate-id)))
+(def reactor (mr/create))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic payload))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor (sel/match-all)
+(fn [event]
+(println "#")
+  (println event)))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic (String. payload)))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor (sel/match-all)
+(fn [event]
+  (println event)))
+(require '[clojurewerkz.machine-head.client :as mh])
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+(require '[clojurewerkz.meltdown.selectors :as sel])
+(def conn (mh/connect "tcp://127.0.0.1:1883" (mh/generate-id)))
+(def reactor (mr/create :event-routing-strategy :broadcast))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic (String. payload)))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor 
+(sel/match-all)
+(fn [event]
+  (println event)))
+(def reactor (mr/create :dispatcher-type :ring-buffer) :event-routing-strategy :broadcast))
+(def reactor (mr/create :dispatcher-type :ring-buffer) :event-routing-strategy :broadcast)
+(def reactor (mr/create :dispatcher-type :ring-buffer :event-routing-strategy :broadcast))
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic (String. payload)))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor 
+(sel/match-all)
+(fn [event]
+  (println event)))
+(flush reactor)
+(ms/flush reactor)
+(flush reactor)
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(println ".")
+(mr/notify reactor topic (String. payload)))
+(mh/subscribe conn ["#"] proxy-to-meltdown)
+(mr/on reactor 
+(sel/match-all)
+(fn [event]
+  (println event)))
+(load-ns 'melting.withmqtt)
+(load-file "src/melting/withmqtt.clj")
+(read-string "(+ 1 1)")
+(eval (read-string "(+ 1 1)"))
+(load-file "src/melting/withmqtt.clj")
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive point
+(def reactor (mr/create))
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+(mr/notify reactor "key" {:my "payload"})
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+(mr/receive-event reactor ($ "hello-key") (fn [_] "response")) 
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            ;; do job with response
+                                            ))
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(mr/receive-event reactor ($ "hello-key") (fn [_] "response")) 
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+(mr/receive-event reactor ($ "hello-key") (fn [_] "response")) 
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            ;; do job with response
+                                            ))
+(mr/receive-event reactor ($ "hello-key") (fn [_] ["response"])) 
+(mr/send-event reactor "hello-key" "data" (fn [event] (println event)))
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+; {:data {:my payload}, :reply-to nil, :headers {}, :key key, :id #uuid "0438d5e1-f648-11e5-7467-a807d2534884"}
+(mr/receive-event reactor ($ "hello-key") (fn [_] ["response"]))
+;; Sends "data" to "hello-key" and waits for handler to call back
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            ;; do job with response
+                                            ))
+(mr/receive-event reactor ($ "hello-key") (fn [_] ["response"]))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+; {:data {:my payload}, :reply-to nil, :headers {}, :key key, :id #uuid "0438d5e1-f648-11e5-7467-a807d2534884"}
+(mr/receive-event reactor ($ "hello-key") (fn [_] ["response"]))
+;; Sends "data" to "hello-key" and waits for handler to call back
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            ;; do job with response
+                                            ))
+                                            
+(mr/send-event reactor "hello-key" {:my "data"} (fn [event]
+)))
+(mr/send-event reactor "hello-key" {:my "data"} (fn [event] ))
+(mr/send-event reactor "hello-key" "data" (fn [event]))(mr/receive-event reactor ($ "hello") (fn [_]
+                                     "response"))
+(mr/receive-event reactor ($ "hello") (fn [_]
+                                     "response"))
+(mr/send-event reactor "hello" "data" (fn [event]))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+; {:data {:my payload}, :reply-to nil, :headers {}, :key key, :id #uuid "0438d5e1-f648-11e5-7467-a807d2534884"}
+(mr/receive-event reactor ($ "hello-key") (fn [_] ["response"]))
+;; Sends "data" to "hello-key" and waits for handler to call back
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            ;; do job with response
+                                            ))
+(mr/receive-event reactor ($ "hello-key") (fn [_] 
+  "response"
+  (Thread/sleep 2000)
+(mr/receive-event reactor ($ "hello-key") (fn [_] 
+  (Thread/sleep 2000)
+  "response"
+  ))
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            (println "done")
+                                            ))
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+; {:data {:my payload}, :reply-to nil, :headers {}, :key key, :id #uuid "0438d5e1-f648-11e5-7467-a807d2534884"}
+(mr/receive-event reactor ($ "hello-key") (fn [_] 
+  (Thread/sleep 2000)
+  "response"
+  ))
+;; Sends "data" to "hello-key" and waits for handler to call back
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            (println event)
+                                            (println "done")
+                                            ))
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            (println (:data event))
+                                            (println "done")
+                                            ))
+(mr/on reactor ($ "USA.*") (fn [event] (println "USA:" event)))
+(mr/on reactor ($ "Europe.*") (fn [event] (println "Europe:" event)))
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(mr/notify reactor "Europe.Germany" {:das :payload}) ;; will fire Europe.*
+(mr/notify reactor "Europe.Sweden" {:das :payload}) ;; will Europe.Sw* and Europe.* handlers
+(mr/notify reactor "Europe.Switzerland" {:das :payload}) ;; will Europe.Sw* and Europe.* handlers
+(mr/notify reactor "Asia.China" {:teh :payload}) ;; will fire none
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(mr/on reactor ($ "USA.*") (fn [event] (println "USA:" event)))
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+(mr/on reactor ($ "USA.*") (fn [event] (println "USA:" event)))
+(mr/on reactor ($ "Europe.*") (fn [event] (println "Europe:" event)))
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(mr/notify reactor "USA.EastCoast" {:teh :payload})
+(mr/notify reactor "USA" {:teh :payload})
+(mr/notify reactor "USA*" {:teh :payload})
+(require '[clojurewerkz.meltdown.selectors :as s :refer [R]])
+(mr/on reactor (R "USA.*") (fn [event] (println "USA:" event)))
+(mr/on reactor (R "Europe.*") (fn [event] (println "Europe:" event)))
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(mr/on reactor (R "USA.*") (fn [event] (println "USA:" event)))
+(mr/notify reactor "USA.EastCoast" {:teh :payload}) ;; will fire USA.*
+(require '[clojurewerkz.meltdown.streams :as ms :refer [create consume accept map*]])
+(def channel (ms/create))
+(def incremented-values (map* inc channel))
+(consume incremented-values (fn [i] (println "Incremented: " i)))
+(accept channel 1)
+(accept channel 2)
+(ms/flush channel)
+(def channel (ms/create))
+(def incremented-values (map* inc channel))
+(def incremented-twice (map* inc channel))
+;(def squared-values (map* (fn [i] (* i i)) incremented-values))
+(consume incremented-twice (fn [i] (println "Incremented and squared value: " i)))
+(accept channel 1)
+(accept channel 2)
+(ms/flush channel)
+(def channel (ms/create))
+(def incremented-values (map* inc channel))
+(def incremented-twice (map* inc incremented-values))
+;(def squared-values (map* (fn [i] (* i i)) incremented-values))
+(consume incremented-twice (fn [i] (println "Incremented twice: " i)))
+(accept channel 1)
+(accept channel 2)
+(ms/flush channel)
+(accept channel 2)
+(accept channel 3)
+(accept channel 4)
+(accept channel 4 4)
+(accept channel [4 5])
+(accept channel 4)
+(accept channel 5)
+(require ‘[clojurewerkz.meltdown.stream-graph :refer :all]))
+(def res (atom 0))
+(def channel (graph  (create)
+                     (map* inc
+                     (reduce* #(+ %1 %2) 0
+     (consume #(reset! res %))))))
+  (accept channel 1)
+  (accept channel 2)
+  (accept channel 3)
+  (ms/flush channel)
+  @res
+(require ‘[clojurewerkz.meltdown.stream-graph :refer :all])
+(require '[clojurewerkz.meltdown.stream-graph :refer :all])
+(require ‘[clojurewerkz.meltdown.stream-graph :refer :all])
+(require '[clojurewerkz.meltdown.stream-graph :refer :all])
+(def res (atom 0))
+(def channel (graph  (create)
+                     (map* inc
+                     (reduce* #(+ %1 %2) 0
+ (consume #(reset! res %)　
+ )))))
+  (accept channel 1)
+  (accept channel 2)
+  (accept channel 3)
+  (ms/flush channel)
+  @res
+(require '[clojurewerkz.meltdown.streams :as ms :refer [create consume accept map*]])
+(def res (atom 0))
+(def channel (graph  (create)
+                     (map* inc
+                     (reduce* #(+ %1 %2) 0
+ (consume #(reset! res %)　
+ )))))
+  (accept channel 1)
+  (accept channel 2)
+  (accept channel 3)
+  (ms/flush channel)
+  @res
+  (accept channel 3)
+  @res
+  (ms/flush channel)
+  @res
+(def channel2 (ms/create))
+(def res (atom nil))
+(def sum (reduce* #(+ %1 %2) 0 channel2))
+(ms/consume sum #(reset! res %))
+(ms/accept channel2 1)
+(ms/accept channel2 2)
+(ms/accept channel2 3)
+(ms/flush channel2)
+@res
+(require '[clojurewerkz.meltdown.streams :as ms :refer [create consume accept map*]])
+(def channel2 (ms/create))
+(def res (atom nil))
+(def sum (reduce* #(+ %1 %2) 0 channel2))
+(ms/consume sum #(reset! res %))
+(ms/accept channel2 1)
+(ms/accept channel2 2)
+(ms/accept channel2 3)
+(ms/flush channel2)
+@res
+(require '[clojurewerkz.meltdown.streams :as ms :refer [create consume accept reduce*]])
+(def channel2 (ms/create))
+(def res (atom nil))
+(def sum (reduce* #(+ %1 %2) 0 channel2))
+(ms/consume sum #(reset! res %))
+(ms/accept channel2 1)
+(ms/accept channel2 2)
+(ms/accept channel2 3)
+(ms/flush channel2)
+@res
+(ms/accept channel2 3)
+@res
+(ms/flush channel2)
+@res
+(defn alert-stream [upstream]
+  (ms/custom-stream
+    (fn [event downstream]
+      (println event)
+      (accept downstream event))
+      upstream))
+(def channel (ms/create))
+(consume (alert-stream channel) (fn [e] (println e)))
+(accept channel 2)
+(defn alert-stream [upstream]
+  (ms/custom-stream
+    (fn [event downstream]
+      (if (< 10 event)
+       (accept downstream event)))
+      upstream))
+(def channel (ms/create))
+(consume (alert-stream channel) (fn [e] (println e)))
+(accept channel 2) 
+(accept channel 3) 
+(accept channel 1) 
+(accept channel 11) 
+(ns melting.withmqtt
+(:require 
+[clojurewerkz.machine-head.client :as mh]
+[clojurewerkz.meltdown.reactor :as mr]
+[clojurewerkz.meltdown.selectors :as sel]))
+; connect to mqtt
+(def conn 
+(mh/connect "tcp://127.0.0.1:1883" 
+(mh/generate-id)))
+; create a reactive point
+(def reactor 
+(mr/create))
+; function to proxy messages from mqtt to 
+; the above created reactive point
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic (String. payload)))
+; subcribe to mqtt messages and proxy
+; all message to the function defined
+(mh/subscribe 
+conn 
+["#"] 
+proxy-to-meltdown)
+; lastly, when the reactor receives any message
+; print the event
+(mr/on reactor 
+(sel/match-all)
+(fn [event]
+  (println event)))
+(ns melting.withmqtt
+(:require 
+[clojurewerkz.machine-head.client :as mh]
+[clojurewerkz.meltdown.reactor :as mr]
+[clojurewerkz.meltdown.selectors :as sel]))
+; connect to mqtt
+(def conn 
+(mh/connect "tcp://127.0.0.1:1883" 
+(mh/generate-id)))
+; create a reactive point
+(def reactor 
+(mr/create))
+; function to proxy messages from mqtt to 
+; the above created reactive point
+(defn proxy-to-meltdown 
+[^String topic _ ^bytes payload]
+(mr/notify reactor topic (String. payload)))
+; subcribe to mqtt messages and proxy
+; all message to the function defined
+(mh/subscribe 
+conn 
+["#"] 
+proxy-to-meltdown)
+; lastly, when the reactor receives any message
+; print the event
+(mr/on reactor 
+(sel/match-all)
+(fn [event]
+  (println (:data event))))
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+(mr/notify reactor "key" {:my "payload"})
+(mr/receive-event reactor ($ "hello-key") (fn [_] 
+  (Thread/sleep 2000)
+  "response"
+  ))
+[clojurewerkz/meltdown "1.1.0"]
+(ns melting.core)
+(require '[clojurewerkz.meltdown.reactor :as mr]) 
+; create a reactive point
+(def reactor (mr/create))
+(require '[clojurewerkz.meltdown.selectors :refer [$]])
+; create a reactive function on a reactive point
+(mr/on reactor 
+($ "key") 
+(fn [event]
+      (println event)))
+; send a message
+(mr/notify reactor "key" {:my "payload"})
+(mr/receive-event reactor ($ "hello-key") (fn [_] 
+  (Thread/sleep 2000)
+  "response"
+  ))
+;; Sends "data" to "hello-key" and waits for handler to call back
+(mr/send-event reactor "hello-key" "data" (fn [event]
+                                            (println (:data event))
+                                            (println "done")
+                                            ))

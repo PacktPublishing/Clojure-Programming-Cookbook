@@ -1,0 +1,14 @@
+Feature: Addition
+  In order to avoid silly mistakes
+  As a math idiot
+  I want to be told the sum of two numbers
+
+  Scenario: Add two numbers                     [90m# addition.feature:6[0m
+    [90mGiven [0m[90mI have entered [0m[90m[1m50[0m[90m into the calculator[0m [90m# addition_stedef.clj:7[0m
+[1A    [32mGiven [0m[32mI have entered [0m[32m[1m50[0m[32m into the calculator[0m [90m# addition_stedef.clj:7[0m
+    [90mAnd [0m[90mI have entered [0m[90m[1m70[0m[90m into the calculator[0m   [90m# addition_stedef.clj:7[0m
+[1A    [32mAnd [0m[32mI have entered [0m[32m[1m70[0m[32m into the calculator[0m   [90m# addition_stedef.clj:7[0m
+    [90mWhen [0m[90mI press add[0m                            [90m# addition_stedef.clj:10[0m
+[1A    [32mWhen [0m[32mI press add[0m                            [90m# addition_stedef.clj:10[0m
+    [90mThen [0m[90mthe result should be [0m[90m[1m120[0m[90m on the screen[0m [90m# addition_stedef.clj:13[0m
+[1A    [32mThen [0m[32mthe result should be [0m[32m[1m120[0m[32m on the screen[0m [90m# addition_stedef.clj:13[0m

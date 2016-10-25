@@ -1,0 +1,500 @@
+(:import [javax.sound.sampled AudioSystem])
+(:require [chime :refer [chime-ch]]
+          [clj-time.core :as t]
+          [clojure.java.io :as io]
+          [clojure.core.async :as a :refer [<! go-loop]]))
+(defn play-sound [file]
+ (let[ 
+  sound (io/as-file file)
+  input (AudioSystem/getAudioInputStream sound)
+  clip (AudioSystem/getClip)]
+  (doto clip
+   (.open input)
+   (.start))))
+(let [chimes (chime-ch [(-> 2 t/seconds t/from-now)])]
+  (a/<!! (go-loop []
+   (when-let [msg (<! chimes)]
+     (play-sound "resources/pendolino.wav")
+     (recur)))))
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <!]])
+(def c (chan))
+(connect! c "ws://localhost")
+(go (loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur))))
+(connect! c "ws://localhost:8000")
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!"))
+(go 
+;(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        ;(recur)
+        ))
+(go 
+;(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        ;(recur)
+        ))
+(go 
+;(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        ;(recur)
+        ))
+(go 
+;(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        ;(recur)
+        ))
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <!]])
+(def c (chan))
+(connect! c "ws://localhost:8000/mqtt")
+(go 
+(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur)
+        ))
+)
+(def c (chan))
+(connect! c "ws://localhost:8000")
+(defn printer
+  [in]
+  (go (while true (println (<! in)))))
+(printer c)
+(def ws-req (<! c))
+(def ws-req (<!! c))
+(def ws-req (clojure.core.async/<!! c))
+(connect! c "ws://localhost:8000/hello")
+(def connec (connect! c "ws://localhost:8000/hello"))
+(clojure.core.asymnc/>!! (:out connec) "hello" "hello")
+(clojure.core.async/>!! (:out connec) "hello" "hello")
+(clojure.core.async/>!! (:out connec) ["hello" "hello")
+(clojure.core.async/>!! (:out connec) ["hello" "hello"])
+(clojure.core.async/>!! (:out connec) "hello")
+(clojure.core.async/>!! c "hello")
+(clojure.core.async/>!! c ["hello" "hello"])
+(connect! c "ws://localhost:8888") 
+(clojure.core.async/>!! c "hello")
+(go 
+(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur)
+        ))
+)
+(let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!"))
+(go (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")))
+(def c (chan))
+(connect! c "ws://localhost:8888")
+(connect! c "ws://localhost:8888/ws")
+(go (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")))
+(go (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")))
+(go 
+(loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (println (<! (:out ws-req)))
+        (recur)
+        )))
+ 
+(go 
+(loop []
+      (when-let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (println (<! (:out ws-req)))
+        (recur)
+        )))
+(connect! c "ws://localhost:8888/ws")
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <!]])
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(go 
+(loop []
+      (when-let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (println "RESPONSE*" (<! (:out ws-req)))
+        (recur))))
+(connect! c "ws://localhost:8888/ws")
+(def ws (atom nil))
+(go 
+(loop []
+      (when-let [ws-req (<! c)]
+      (reset! ws ws-req))))
+ws
+(go (>! (:in @ws) "hello"))
+(go (>! c "hello"))
+(:in @ws)
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <!]])
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(def ws (atom nil))
+(go 
+(let [ws-req (<! c)]
+        (reset! ws (:in ws-req))))
+@ws
+(>! (:in @ws) "hello")
+(go (>! (:in @ws) "hello"))
+(:in @ws)
+ws
+(:in ws)
+(go (>! @ws "hello"))
+(go (>! @ws "hello 3"))
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(def in (atom nil))
+(def out (atom nil))
+(go 
+(let [ws-req (<! c)]
+        (reset! in (:in ws-req))
+        (reset! out (:out ws-req))))
+(go (>! @in "message to socket"))
+(<!! @out)
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <! >!! <!!]])
+(<!! @out)
+(go (>! @in "message to socket 2"))
+(<!! @out)
+(go (<! @out))
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(def in (atom nil))
+(def out (atom nil))
+(go 
+(let [ws-req (<! c)]
+        (reset! in (:in ws-req))
+        (reset! out (:out ws-req))))
+(defn printer
+  [in]
+  (go (while true (println (<! in)))))
+(printer out)
+out
+(printer @out)
+(go (>! @in "message to socket 2"))
+(go (>! @in "message to socket 3"))
+(go (>! @in "message to socket 5"))
+(go (>! @in "message to socket 19"))
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [connect!]]
+         '[clojure.core.async :refer [chan go >! <! >!! <!!]])
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(go-loop []
+       (when-let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur)))
+(go 
+(loop []
+       (when-let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur))))
+(go 
+(loop []
+       (when-let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello remote websocket server!")
+        (recur))))
+(connect! c "ws://localhost:8888/ws")
+(def in (atom nil))
+(def out (atom nil))
+(go 
+(let [ws-req (<! c)]
+        (reset! in (:in ws-req))
+        (reset! out (:out ws-req))))
+(defn printer
+  [in]
+  (go (while true (println (<! in)))))
+(printer @out)
+in
+out
+(printer @out)
+@out
+out
+(printer out)
+(def c (chan))
+(connect! c "ws://localhost:8888/ws")
+(def in (atom nil))
+(def out (atom nil))
+(go 
+(let [ws-req (<! c)]
+        (reset! in (:in ws-req))
+        (reset! out (:out ws-req))))
+(defn printer
+  [in]
+  (go (while true (println (<! in)))))
+(printer @out)
+((>!! @in "sushi please")
+)
+(>!! in "sushi please"))
+(>!! in "sushi please")
+(>!! @in "sushi please")
+(>!! in "sushi please"))
+(>!! in "sushi please")
+(>!! @in "sushi please")
+(>!! @in "yes indeed!")
+(printer @out)
+(>!! @in "yes indeed!")
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (when-let [msg (<! in)]
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (when-let [msg (<! in)]
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (println "New websocket connection!")
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (when-let [msg (<! in)]
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (println "New websocket connection!")
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (when-let [msg (<! in)]
+        (println "MSG:" msg)
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (println "New websocket connection!")
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (let [msg (<! in)]
+        (println "MSG:" msg)
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(clojure.core.async/<!! c)
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  (println "New websocket connection!")
+  (let[ in (:in ws-req) out (:out ws-req)]
+  (go (loop []
+      (when-let [msg (<! in)]
+        (println "MSG:" msg)
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(defn websocket-handler [ws-req]
+  
+  (let[ in (:in ws-req) out (:out ws-req)]
+    (println "New websocket connection!")
+    (println in)
+    (println out)
+  (go (loop []
+      (when-let [msg (<! in)]
+        (println "MSG:" msg)
+        (>! out "ECHO: msg")
+        (recur))))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler ws-req)
+        (recur))))  
+(go (loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello new websocket client!")
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+(go (loop []
+      (let [ws-req (<! c)]
+        (>! (:in ws-req) "Hello new websocket client!")
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+; (go (loop []
+;       (let [ws-req (<! c)]
+;         (>! (:in ws-req) "Hello new websocket client!")
+;         (recur))))  
+(defn websocket-handler [in out]
+  (println "New websocket connection!")
+  (go (loop []
+      (when-let [msg (<! in)]
+        (println "MSG:" msg)
+        (>! out "ECHO: msg")
+        (recur)))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler (:in ws-req) out (:out ws-req))
+        (recur))))  
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler (:in ws-req) (:out ws-req))
+        (recur))))  
+(require '[com.keminglabs.jetty7-websockets-async.core :refer [configurator]]
+         '[clojure.core.async :refer [chan go >! <!]]
+         '[ring.adapter.jetty :refer [run-jetty]])
+(defn http-handler
+  [req]
+  {:response 200 :body "HTTP hello" :headers {}})
+(def c (chan))
+(def ws-configurator
+  (configurator c {:path "/ws"}))
+(def server
+  (run-jetty http-handler {:configurator ws-configurator
+                           :port 8888, :join? false}))
+; (go (loop []
+;       (let [ws-req (<! c)]
+;         (>! (:in ws-req) "Hello new websocket client!")
+;         (recur))))  
+(defn websocket-handler [in out]
+  (println "New websocket connection!")
+  (go (loop []
+      (when-let [msg (<! out)]
+        (println "MSG:" msg)
+        (>! in "ECHO: msg")
+        (recur)))))
+(go (loop []
+      (let [ws-req (<! c)]
+        (websocket-handler (:in ws-req) (:out ws-req))
+        (recur))))  

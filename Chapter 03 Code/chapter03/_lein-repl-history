@@ -1,0 +1,50 @@
+(require '[clojure.core.async :refer (chan buffer pipeline put! take!)])
+(defn apply-transducer
+  [in xf]
+  (let [
+        out (chan 8)
+        thread-count 2
+        ]
+    (pipeline thread-count out xf in)
+    out))
+(def in (chan))
+(def out (apply-transducer in (filter odd?)))
+(put! in 3)
+(take! out (fn [x] (println x)))
+(put! in 4)
+(take! out (fn [x] (println x)))
+(ns chapter03.logic
+(:use [clojure.core.logic])
+(:require [clojure.core.logic.fd :as fd]))
+(run* [q]
+    (== q 1))
+(def interval (range 10))
+(run* [c1 c2 c3]
+  (membero c1 interval)
+  (membero c2 interval)
+  (membero c3 interval)
+  (fd/eq
+    (= (- c2 c1) c3))
+)
+(run* [c1 c2 c3]
+  (membero c1 interval)
+  (membero c2 interval)
+  (membero c3 interval)
+  (fd/eq
+    (= (- c2 c1) c3))
+  (project [c3]
+     (conde
+       [(== (test-me c3) 16)]
+       [(== (test-me c3) 9)])))
+(defn test-me [ x ]
+   (* x x))
+(run* [c1 c2 c3]
+  (membero c1 interval)
+  (membero c2 interval)
+  (membero c3 interval)
+  (fd/eq
+    (= (- c2 c1) c3))
+  (project [c3]
+     (conde
+       [(== (test-me c3) 16)]
+       [(== (test-me c3) 9)])))

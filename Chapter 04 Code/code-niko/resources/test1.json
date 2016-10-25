@@ -1,0 +1,6 @@
+[
+{ "name":"Amy" , "grade1": 35 , "grade2": 41 , "grade3": 53},
+{ "name":"Bob" , "grade1": 44 , "grade2": 37 , "grade3": 28},
+{ "name":"Charles" , "grade1": 68, "grade2": 65 , "grade3": 61},
+{ "name":"David" , "grade1": 72 , "grade2": 78 , "grade3": 81}
+]

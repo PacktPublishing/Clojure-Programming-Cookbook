@@ -1,0 +1,1 @@
+export FIXTURES=set1.csv ; lein cucumber features02

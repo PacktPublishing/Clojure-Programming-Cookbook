@@ -1,0 +1,1 @@
+([:dependencies ([cider/cider-nrepl "0.9.0"] [org.clojure/clojure "1.8.0"] [co.paralleluniverse/quasar-core "0.7.4"] [co.paralleluniverse/pulsar "0.7.4"] [org.clojure/tools.nrepl "0.2.6" :exclusions ([org.clojure/clojure]) :scope "test"] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure]) :scope "test"] [com.cemerick/pomegranate "0.3.0"])])

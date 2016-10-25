@@ -1,0 +1,160 @@
+import-vars
+(ns user)
+(require 'potemkin)
+(imports-vars [clojure.string reverse])
+(import-vars [clojure.string reverse]) 
+(import-fn [clojure.string reverse])
+(potemkin/import-fn [clojure.string reverse])
+(import-vars [clojure.string reverse])
+(potemkin/import-vars [clojure.string reverse])
+(user/reverse)
+(user/reverse "hello") 
+(require '[clojure.tools.namespace.repl :refer [refresh]]) 
+(refresh)
+(ns 'helloagain)
+(ns helloagain)
+(only-one)
+(ns helloagain)
+(only-one)
+(require 'helloagain)
+(only-one)
+(require '[helloagain :refer :all :reload])
+(require '[helloagain :refer :all] :reload)
+(only-one)
+(refresh)
+(require '[clojure.tools.namespace.repl :refer [refresh]]) 
+(refresh)
+(only-two)
+(ns user)
+(require '[helloagain :refer :all])
+(refresh)
+(require '[clojure.tools.namespace.repl :refer [refresh]]) 
+(refresh)
+(only-three)
+(refresh)
+(only-three)
+(require '[helloagain :refer :all])
+(only-three)
+(helloagain/only-three)
+(refresh)
+(helloagain/only-two-two)
+ (use 'clj-tuple)
+(require '[puget.printer :as puget])
+(puget/pprint #{'x :a :z 3 1.0})
+(puget/cprint #{'x :a :z 3 1.0})
+(env/env)
+(require '[adzerk.env :as env])
+(env/env)
+(require '[puget.printer :as puget])
+(puget/cprint (env/env)))
+(puget/cprint (env/env))
+ (use '[cemerick.pomegranate :only (add-dependencies)])
+(add-dependencies :coordinates '[[aaron-santos/clj-tiny-astar "0.1.1-SNAPSHOT"]]
+                     :repositories 
+                  ({"clojars" "http://clojars.org/repo"}))
+(add-dependencies :coordinates '[[aaron-santos/clj-tiny-astar "0.1.1-SNAPSHOT"]]
+                     :repositories 
+                  ([{"clojars" "http://clojars.org/repo"}]))
+(add-dependencies :coordinates '[[aaron-santos/clj-tiny-astar "0.1.1-SNAPSHOT"]]
+                     :repositories 
+                  {"clojars" "http://clojars.org/repo"})
+(clj-tiny-astar/a*
+   [4 4] ;;bounds of the grid (width & height)
+   my-predicate ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [3 3])
+(use 'clj-tiny-astar)
+(use 'clj-tiny-astar.path)
+ (clj-tiny-astar/a*
+   [4 4] ;;bounds of the grid (width & height)
+   my-predicate ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [3 3] ;:to
+  )
+(a*
+   [4 4] ;;bounds of the grid (width & height)
+   my-predicate ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [3 3] ;:to
+  )
+(def test-grid
+  ;0 1 2 3 4 5
+  [1 1 1 1 1 1 ; 0
+   1 0 0 1 1 1 ; 1
+   1 0 1 1 1 1 ; 2
+   1 0 0 0 1 1 ; 3
+   1 1 1 1 1 1 ; 4
+   ])
+(defn can-walkf
+  [grid width]
+  (fn [[x y]]
+    (let [i (+ x (* y width))]
+      (and (< -1 i (count grid))
+           (= (grid i) 0)))))
+ (a*
+   [4 4] ;;bounds of the grid (width & height)
+   can-walkf ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [3 3] ;:to
+  )
+ (a*
+   [6 6] ;;bounds of the grid (width & height)
+   can-walkf ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [3 3] ;:to
+  )
+ (a*
+   [6 6] ;;bounds of the grid (width & height)
+   can-walkf ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [4 4] ;:to
+  )
+ (a*
+   [5 5] ;;bounds of the grid (width & height)
+   can-walkf ;;predicate that takes a point [x y] and returns whether a cell is walkable
+   [0 0] ;;from
+   [4 4] ;:to
+  )
+(add-dependencies :coordinates '[[aatree "0.3.3"]]
+                     :repositories 
+                  {"clojars" "http://clojars.org/repo"})
+(require '[aatree.core :refer [new-sorted-map]]) 
+(use 'aatree.core)
+(new-sorted-map)
+(require '[aatree.core :refer :all])
+(new-sorted-map)
+(require '[aatree.core :refer :all])
+(add-dependencies 
+                     :coordinates '[[aatree "0.3.3"]]
+                     :repositories  {"clojars" "http://clojars.org/repo"})
+(require '[aatree.core :refer :all])
+(new-sorted-set)
+(aatree.core/new-sorted-set)
+(require '[aatree.core :refer :all])
+(aatree.core/new-sorted-set)
+                     :repositories 
+(add-dependencies 
+                     :coordinates '[[active-quickcheck "0.3.0"]]
+                     :repositories  {"clojars" "http://clojars.org/repo"})
+ (use '[cemerick.pomegranate :only (add-dependencies)])
+(add-dependencies 
+                     :coordinates '[[active-quickcheck "0.3.0"]]
+                     :repositories  {"clojars" "http://clojars.org/repo"})
+(use 'active.quickcheck)
+(quickcheck (property [a integer
+                       b integer]
+               (= (+ a b) (+ b a))))
+(require '[cemerick.pomegranate :refer [add-dependencies]]) 
+(in-ns 'hello)
+(def a 1)
+(def b (fn [a] (inc a)))
+(def b (clojure.core/fn [a] (inc a)))
+(require 'clojure.core)
+(clojure.core/require 'clojure.core)
+(def b (fn [a] (inc a)))
+(def b (fn[c] (inc c)))
+(def b (clojure.core/fn[c] (clojure.core/inc c)))
+(b 2)
+(require '[clojure.tools.namespace.repl :refer [refresh]])
+(require '[helloagain :refer :all])
+(only-one)

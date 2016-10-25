@@ -1,0 +1,36 @@
+(use 'clojure.data.xml) 
+(def input-xml 
+  (slurp "http://w1.weather.gov/xml/current_obs/KSFO.rss"))
+(def xml 
+  (parse (java.io.StringReader. input-xml)))
+(->> xml
+ (:content)
+ (filter #(= (:tag % :channel)))
+ first
+ (:content)
+ (map #(:content %))
+ first)
+xml
+(->> xml 
+(:content))
+(->> xml
+ (:content)
+ (filter #(= (:tag % :channel)))
+ first)
+(->> xml
+ (:content)
+ 
+ first
+ (:content)
+ (map #(:content %))
+ first)
+(require '[cheshire.core :refer :all])
+(def url 
+"http://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&cluster=yes&appid=2de143494c0b295cca9337e1e96b00e0")
+(def slurped 
+  (slurp url))
+(def url 
+"http://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&cluster=yes&appid=9220dd1ac43dcaf7091d8c07a8a46efb")
+(def slurped 
+  (slurp url))
+slurped

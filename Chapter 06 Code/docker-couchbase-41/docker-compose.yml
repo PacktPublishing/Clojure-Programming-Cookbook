@@ -1,0 +1,17 @@
+couchbase1:
+  image: arungupta/couchbase
+  volumes:
+    - /export/var/couchbase/node41-1:/opt/couchbase/var
+couchbase2:
+  image: arungupta/couchbase
+  volumes:
+    - /export/var/couchbase/node41-2:/opt/couchbase/var
+couchbase3:
+  image: arungupta/couchbase
+  volumes:
+    - /export/var/couchbase/node41-3:/opt/couchbase/var
+  ports:
+    - 8091:8091
+    - 8092:8092 
+    - 8093:8093 
+    - 11210:11210

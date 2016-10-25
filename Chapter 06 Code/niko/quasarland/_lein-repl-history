@@ -1,0 +1,500 @@
+  (println "I am drinking ...")
+  (receive
+    [:gohome who]
+    (println who " is telling me to go home!")))
+(defsfn policeman [man]
+(sleep 1000)
+(! man [:gohome @self]))
+(def drinking-man (spawn drunk-man))
+(spawn policeman drinking-man)
+drinking-man
+*1
+(defsfn drunk-man [] 
+  (println "I am drinking ...")
+  (receive
+    [:gohome who]
+    (do 
+    (println who " is telling me to go home!")
+    (println "but ...")
+    (recur)
+    )))
+(def drinking-man (spawn drunk-man))
+(spawn policeman drinking-man)
+(ns quasarland.firststeps
+  (:use [co.paralleluniverse.pulsar core actors])
+  (:refer-clojure :exclude [promise await]))
+(defsfn drunk-man [] 
+  (println "I am drinking ...")
+  (receive
+    [:gohome who]
+    (do 
+    (println who " is telling me to go home!")
+    (println "but ...")
+    (recur))))
+(defsfn policeman [man]
+(sleep 1000)
+(! man [:gohome @self]))
+(def drinking-man (spawn drunk-man))
+(spawn policeman drinking-man)
+(defsfn sleeping-man [] 
+  (println "I keep on sleeping ...")
+  (receive
+    [:wakeup who]
+    (do 
+    (println "Someone is telling me to wakeup!")
+    (println "but ...")
+    (recur))))
+(defsfn someone [man]
+(sleep 1000)
+(! man [:wakeup @self]))
+(def man-asleep (spawn sleeping-man))
+(spawn someone man-asleep)
+(rand 10)
+(rand-int 10)
+(defsfn ping [pong]
+  (if (== (rand-int 10) 1)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur (dec n) pong))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(let [a1 (spawn pong)
+      b1 (spawn ping 3 a1)])
+  
+(defsfn ping [pong]
+  (if (== (rand-int 10) 1)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur (dec n) pong))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(let [a1 (spawn pong)
+      b1 (spawn ping 3 a1)])
+  
+(defsfn ping [pong]
+  (if (== (rand-int 10) 1)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur pong))))
+(defsfn ping [pong]
+  (if (== (rand-int 10) 1)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur pong))))
+(let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  
+(let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (rand-int 10)
+(rand-int 10)
+(defsfn ping [pong]
+  (if (>= (rand-int 10) 9)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur pong))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+(ns quasarland.pingpong 
+  (:use [co.paralleluniverse.pulsar core actors])
+  (:refer-clojure :exclude [promise await]))
+(defsfn ping [pong]
+  (if (>= (rand-int 10) 9)
+    (do
+      (! pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur pong))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  (let [a1 (spawn pong)
+      b1 (spawn ping a1)])
+  
+(ns quasarland.pingpong2
+  (:use [co.paralleluniverse.pulsar core actors])
+  (:refer-clojure :exclude [promise await]))
+(defsfn ping []
+  (if (>= (rand-int 10) 9)
+    (do
+      (! :pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! :pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur pong))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(register! :pong (spawn pong))
+(spawn pong)
+(spawn ping )
+(defsfn ping []
+  (if (>= (rand-int 10) 9)
+    (do
+      (! :pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! :pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(register! :pong (spawn pong))
+(unregister! :pong)
+(deregister! :pong)
+(unregister! :pong)
+(ns quasarland.pingpong2
+  (:use [co.paralleluniverse.pulsar core actors])
+  (:refer-clojure :exclude [promise await]))
+(defsfn ping []
+  (if (>= (rand-int 10) 9)
+    (do
+      (! :pong :finished)
+      (println "Missed the ball. Ping finished"))
+    (do
+      (! :pong [:ping @self])
+      (receive
+        :pong (println "Ping"))
+      (recur))))
+(defsfn pong []
+  (receive
+    :finished (println "Pong finished")
+    [:ping ping] (do
+                   (println "Pong")
+                   (! ping :pong)
+                   (recur))))
+(register! :pong (spawn pong))
+(spawn pong)
+(spawn ping )
+(spawn-fiber pong)
+(fiber (do (sleep 2000) (println "oh")))
+(let [f (fn [a b] (Fiber/sleep 20) (+ a b))
+            fib (spawn-fiber f 3 4)]
+        (join fib))
+(let [actor1 (spawn #(sleep 200))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] actor))))])
+(let [actor1 (spawn #(sleep 2000))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] actor))))])
+(import '[co.paralleluniverse.fibers Fiber])
+(let [actor1 (spawn #(Fiber/sleep 2000))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] actor))))])
+(let [actor1 (spawn #(Fiber/sleep 5000))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] actor))))])
+(let [actor1 (spawn #(Fiber/sleep 5000))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] (println actor)))))])
+(let [actor1 (spawn #(Fiber/sleep 1000))
+        actor2 (spawn
+                (fn []
+                 (let [w (watch! actor1)]
+                 (receive
+                  [:exit w actor reason] (println "bye .." actor)))))])
+(let [actor1 (spawn #(sleep 1000))
+      actor2 (spawn
+              (fn []
+               (let [w (watch! actor1)]
+               (receive
+                [:exit w actor reason] 
+   (println "bye .." actor)))))])
+    
+(let [actor (spawn #(do
+                             (set-state! 0)
+                             (set-state! (+ @state (receive)))
+                             @state))]
+               (! actor 13)
+               (! actor 12))
+(join actor)
+(let [actor (spawn #(do
+           (set-state! 0)
+           (set-state! (+ @state (receive)))
+           @state))]
+               (! actor 13)
+               (! actor 12)
+               (join actor)
+               )
+ (let [actor 
+        (spawn #(do
+           (set-state! 0)
+           (set-state! (+ @state (receive)))
+           @state))]
+               (! actor 13)
+               (! actor 12)
+               (join actor)
+               (! actor 12)
+               )
+ (let [actor 
+        (spawn #(do
+           (set-state! 0)
+           (set-state! (+ @state (receive)))
+           @state))]
+               (! actor 13)
+               (! actor 12)
+               (join actor)
+               (! actor 12)
+               (join actor)
+               )
+(java.util.Date.)
+ (let [actor 
+        (spawn #(do
+           (set-state! 0)
+           (set-state! (+ @state (receive)))
+           (set-state! (- @state (receive)))
+           @state))]
+               (! actor (java.util.Date.))
+               (join actor))
+(let [actor 
+        (spawn #(do
+           (set-state! (java.util.Date.))
+           (set-state! (- (receive) @state))
+           @state))]
+               (sleep 2000)
+               (! actor (java.util.Date.))
+               (join actor))
+(ns quasarland.others
+  (:use [co.paralleluniverse.pulsar core actors])
+  (:refer-clojure :exclude [promise await]))
+(let [actor1 (spawn #(Fiber/sleep 1000))
+      actor2 (spawn
+              (fn []
+               (let [w (watch! actor1)]
+               (receive
+                [:exit w actor reason] (println "bye .." actor)))))])
+ (let [actor 
+        (spawn #(do
+           (set-state! (java.util.Date.))
+           (set-state! (- (receive) @state))
+           @state))]
+               (sleep 2000)
+               (! actor (java.util.Date.))
+               (join actor))
+(let [actor 
+        (spawn #(do
+           (set-state! (System/currentTimeMillis))
+           (set-state! (- (receive) @state))
+           @state))]
+               (sleep 2000)
+               (! actor (System/currentTimeMillis))
+               (join actor))
+(let [ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)
+                    m4 (rcv ch)]
+                (list m1 m2 m3 m4))))]
+(sleep 20)
+(snd ch "m1")
+(sleep 20)
+(snd ch "m2")
+(sleep 20)
+(snd ch "m3")
+(close! ch)
+(snd ch "m4")
+(join fiber))
+(let [
+    ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)]
+                (reduce + m1 m2 m3 m4))))]
+(sleep 20)
+(snd ch "m1")
+(sleep 20)
+(snd ch "m2")
+(sleep 20)
+(snd ch "m3")
+(join fiber))
+(let [
+    ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)]
+                (reduce + m1 m2 m3))))]
+(sleep 20)
+(snd ch "m1")
+(sleep 20)
+(snd ch "m2")
+(sleep 20)
+(snd ch "m3")
+(join fiber))
+(let [
+    ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)]
+                (apply + m1 m2 m3))))]
+(sleep 20)
+(snd ch "m1")
+(sleep 20)
+(snd ch "m2")
+(sleep 20)
+(snd ch "m3")
+(join fiber))
+(let [
+    ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)]
+                (apply + m1 m2 m3))))]
+(sleep 20)
+(snd ch 10)
+(sleep 20)
+(snd ch 10)
+(sleep 20)
+(snd ch 20)
+(join fiber))
+(let [
+    ch (channel)
+    fiber (spawn-fiber
+            (fn []
+              (let [m1 (rcv ch)
+                    m2 (rcv ch)
+                    m3 (rcv ch)]
+                (+ m1 m2 m3))))]
+(sleep 20)
+(snd ch 10)
+(sleep 20)
+(snd ch 10)
+(sleep 20)
+(snd ch 20)
+(join fiber))
+(spawn-fiber (fn [] (sleep 1000) (println "slept well")))
+(let [ch (channel)
+      fiber (spawn-fiber #(rcv-into [] ch 1000))]
+        (snd-seq ch (range 5))
+        (close! ch)
+        (join fiber))
+(let [ch (channel 0 :block true true)
+    f #(rcv ch)
+    fiber1 (spawn-fiber f)
+    fiber2 (spawn-fiber f)]
+(snd ch "m1")
+(snd ch "m2")
+(close! ch)
+#{(join fiber1) (join fiber2)})
+(channel)
+(let [ch (channel)
+      fiber (spawn-fiber #(rcv-into [] ch 1000))]
+        (snd-seq ch (range 2000))
+        (close! ch)
+        (join fiber))
+(let [ch (channel)
+      fiber (spawn-fiber #(rcv-into [] ch 1000))]
+        (snd-seq ch (range 200))
+        (close! ch)
+        (join fiber))
+(let [ch (channel)
+      fiber (spawn-fiber #(rcv-into [] ch))]
+        (snd-seq ch (range 200))
+        (close! ch)
+        (join fiber))
+(ns quasarland.blazar
+  (:require
+    [co.paralleluniverse.pulsar.core :as pc]
+    [blazar.http.server :as bs]))
+(pc/join (pc/spawn-fiber #(bs/start-fiber-ring-adapter "localhost" 8080 (fn [req] "Hello world!"))))
+(ns quasarland.blazar
+  (:require
+    [co.paralleluniverse.pulsar.core :as pc]
+    [blazar.http.server :as bs]))
