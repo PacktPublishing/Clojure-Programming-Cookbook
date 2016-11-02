@@ -1,0 +1,4 @@
+(use '[clojure.java.shell :only [sh]])
+(sh "bash" "top -l 1 | head -n 10 | grep CPU | awk '{print $3}'")
+(sh "bash" "-c" "top -l 1 | head -n 10 | grep CPU | awk '{print $3}'")
+(:out (sh "bash" "-c" "top -l 1 | head -n 10 | grep CPU | awk '{print $3}'"))

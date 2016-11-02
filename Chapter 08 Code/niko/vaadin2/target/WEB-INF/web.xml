@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+     PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  
+  <servlet>
+    <servlet-name>G__836</servlet-name>
+    <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+    
+    <init-param>
+      <param-name>UI</param-name>
+      <param-value>vaadin2.vaadin2ui</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>G__836</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+</web-app>

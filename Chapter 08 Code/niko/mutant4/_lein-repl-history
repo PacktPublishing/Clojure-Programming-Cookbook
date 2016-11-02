@@ -1,0 +1,85 @@
+(require '[immutant.pipeline :as pl])
+(require '[immutant.messaging.pipeline :as pl])
+(defn foome [m] (inc m))
+ (defonce foo-pipeline
+  (pl/pipeline "foo" ;; pipelines must be named
+    (pl/step foome :concurrency 5) ;; run this step with 5 threads
+    save-data ;; a 'vanilla' step
+    :concurrency 2 ;; run all steps with 2 threads (unless overridden)))
+)
+ (defonce foo-pipeline
+  (pl/pipeline "foo" ;; pipelines must be named
+    (pl/step foome :concurrency 5) ;; run this step with 5 threads
+    :concurrency 2))
+(foo-pipeline  (take 1000 (repeat 1)))
+]
+(foo-pipeline  [1 2 #
+(foo-pipeline  [1 2 3])
+(foo-pipeline [1 2 3])
+(foo-pipeline 3)
+(foo-pipeline 5)
+@foo-pipeline
+(deref foo-pipeline)
+(deref (foo-pipeline))
+(deref (foo-pipeline 2 ))
+(deref (foo-pipeline 2))
+  (defn barme [m] (map inc m))
+  (defonce bar-pipeline
+   (pl/pipeline "bar" ;; pipelines must be named
+     (pl/step barme :concurrency 5) ;; run this step with 5 threads
+     (pl/step barme :concurrency 5)
+     :concurrency 2))
+(defref (bar-pipeline (take 10 (repeat 1))))
+(deref (bar-pipeline (take 10 (repeat 1))))
+(deref (bar-pipeline (take 1000 (repeat 1))))
+(deref (bar-pipeline (take 10000 (repeat 1))))
+(ns mutant4.pipes
+  (:require [immutant.messaging.pipeline :as pl]))
+(defn barme [m] 
+(map inc m))
+(defonce bar-pipeline
+ (pl/pipeline "bar"
+   (pl/step barme)
+   :concurrency 2))
+(defref
+  (bar-pipeline (take 1000 (repeat 1))))
+(deref
+  (bar-pipeline (take 1000 (repeat 1))))
+(defonce bar-pipeline
+ (pl/pipeline "bar"
+   (pl/step barme)
+   :concurrency 4))
+(defref
+  (bar-pipeline (take 1000 (repeat 1))))
+(deref
+  (bar-pipeline (take 1000 (repeat 1))))
+(defonce bar-pipeline
+ (pl/pipeline "bar"
+   (pl/step barme)
+   :concurrency 4))
+(deref
+  (bar-pipeline (take 1000 (repeat 1))))
+(time 
+(deref (
+   (pl/pipeline "bar"
+   (pl/step barme)
+   :concurrency 1)
+   (take 1000 (repeat 1)))))
+(time 
+(deref (
+   (pl/pipeline "bar1"
+   (pl/step barme)
+   :concurrency 1)
+   (take 1000 (repeat 1)))))
+(time 
+(deref (
+   (pl/pipeline "bar2"
+   (pl/step barme)
+   :concurrency 4)
+   (take 1000 (repeat 1)))))
+(time 
+(deref (
+   (pl/pipeline "bar3"
+   (pl/step barme)
+   :concurrency 1)
+   (take 10000 (repeat 1)))))
